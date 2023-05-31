@@ -1,0 +1,8 @@
+prefix=/home/loan/test_script/sawyer_vision_bartender/devel
+
+Name: bartender_sawyer
+Description: Description of bartender_sawyer
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
