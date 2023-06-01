@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/loan/test_script/sawyer_vision_bartender/src
+CMAKE_SOURCE_DIR = /home/loan/sawyer_vision_bartender/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/loan/test_script/sawyer_vision_bartender/build
+CMAKE_BINARY_DIR = /home/loan/sawyer_vision_bartender/build
 
 # Utility rule file for download_extra_data.
 
@@ -67,6 +67,6 @@ CMakeFiles/download_extra_data.dir/clean:
 .PHONY : CMakeFiles/download_extra_data.dir/clean
 
 CMakeFiles/download_extra_data.dir/depend:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/loan/test_script/sawyer_vision_bartender/src /home/loan/test_script/sawyer_vision_bartender/src /home/loan/test_script/sawyer_vision_bartender/build /home/loan/test_script/sawyer_vision_bartender/build /home/loan/test_script/sawyer_vision_bartender/build/CMakeFiles/download_extra_data.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/loan/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/loan/sawyer_vision_bartender/src /home/loan/sawyer_vision_bartender/src /home/loan/sawyer_vision_bartender/build /home/loan/sawyer_vision_bartender/build /home/loan/sawyer_vision_bartender/build/CMakeFiles/download_extra_data.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/download_extra_data.dir/depend
 

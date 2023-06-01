@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/loan/test_script/sawyer_vision_bartender/src
-# Build directory: /home/loan/test_script/sawyer_vision_bartender/build
+# Source directory: /home/loan/sawyer_vision_bartender/src
+# Build directory: /home/loan/sawyer_vision_bartender/build
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

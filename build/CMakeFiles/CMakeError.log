@@ -1,21 +1,21 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
-Change Dir: /home/loan/test_script/sawyer_vision_bartender/build/CMakeFiles/CMakeTmp
+Change Dir: /home/loan/sawyer_vision_bartender/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_63c96/fast && /usr/bin/make -f CMakeFiles/cmTC_63c96.dir/build.make CMakeFiles/cmTC_63c96.dir/build
-make[1]: Entering directory '/home/loan/test_script/sawyer_vision_bartender/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_63c96.dir/src.c.o
-/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_63c96.dir/src.c.o   -c /home/loan/test_script/sawyer_vision_bartender/build/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_63c96
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_63c96.dir/link.txt --verbose=1
-/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_63c96.dir/src.c.o  -o cmTC_63c96 
-/usr/bin/ld: CMakeFiles/cmTC_63c96.dir/src.c.o: in function `main':
+Run Build Command(s):/usr/bin/make cmTC_06545/fast && /usr/bin/make -f CMakeFiles/cmTC_06545.dir/build.make CMakeFiles/cmTC_06545.dir/build
+make[1]: Entering directory '/home/loan/sawyer_vision_bartender/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_06545.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_06545.dir/src.c.o   -c /home/loan/sawyer_vision_bartender/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_06545
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_06545.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_06545.dir/src.c.o  -o cmTC_06545 
+/usr/bin/ld: CMakeFiles/cmTC_06545.dir/src.c.o: in function `main':
 src.c:(.text+0x46): undefined reference to `pthread_create'
 /usr/bin/ld: src.c:(.text+0x52): undefined reference to `pthread_detach'
 /usr/bin/ld: src.c:(.text+0x63): undefined reference to `pthread_join'
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_63c96.dir/build.make:87: cmTC_63c96] Error 1
-make[1]: Leaving directory '/home/loan/test_script/sawyer_vision_bartender/build/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_63c96/fast] Error 2
+make[1]: *** [CMakeFiles/cmTC_06545.dir/build.make:87: cmTC_06545] Error 1
+make[1]: Leaving directory '/home/loan/sawyer_vision_bartender/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_06545/fast] Error 2
 
 
 Source file was:
@@ -39,20 +39,20 @@ int main(void)
 }
 
 Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /home/loan/test_script/sawyer_vision_bartender/build/CMakeFiles/CMakeTmp
+Change Dir: /home/loan/sawyer_vision_bartender/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_f5f7a/fast && /usr/bin/make -f CMakeFiles/cmTC_f5f7a.dir/build.make CMakeFiles/cmTC_f5f7a.dir/build
-make[1]: Entering directory '/home/loan/test_script/sawyer_vision_bartender/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_f5f7a.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_f5f7a.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
-Linking C executable cmTC_f5f7a
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f5f7a.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_f5f7a.dir/CheckFunctionExists.c.o  -o cmTC_f5f7a  -lpthreads 
+Run Build Command(s):/usr/bin/make cmTC_af60a/fast && /usr/bin/make -f CMakeFiles/cmTC_af60a.dir/build.make CMakeFiles/cmTC_af60a.dir/build
+make[1]: Entering directory '/home/loan/sawyer_vision_bartender/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_af60a.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_af60a.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_af60a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_af60a.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_af60a.dir/CheckFunctionExists.c.o  -o cmTC_af60a  -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_f5f7a.dir/build.make:87: cmTC_f5f7a] Error 1
-make[1]: Leaving directory '/home/loan/test_script/sawyer_vision_bartender/build/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_f5f7a/fast] Error 2
+make[1]: *** [CMakeFiles/cmTC_af60a.dir/build.make:87: cmTC_af60a] Error 1
+make[1]: Leaving directory '/home/loan/sawyer_vision_bartender/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_af60a/fast] Error 2
 
 
 

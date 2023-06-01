@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/loan/test_script/sawyer_vision_bartender/src
+CMAKE_SOURCE_DIR = /home/loan/sawyer_vision_bartender/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/loan/test_script/sawyer_vision_bartender/build
+CMAKE_BINARY_DIR = /home/loan/sawyer_vision_bartender/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -137,14 +137,14 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/loan/test_script/sawyer_vision_bartender/build/CMakeFiles /home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_common/CMakeFiles/progress.marks
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_common/intera_common/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/loan/test_script/sawyer_vision_bartender/build/CMakeFiles 0
+	cd /home/loan/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/loan/sawyer_vision_bartender/build/CMakeFiles /home/loan/sawyer_vision_bartender/build/intera_common/intera_common/CMakeFiles/progress.marks
+	cd /home/loan/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_common/intera_common/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/loan/sawyer_vision_bartender/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_common/intera_common/clean
+	cd /home/loan/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_common/intera_common/clean
 .PHONY : clean
 
 # The main clean target
@@ -154,22 +154,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_common/intera_common/preinstall
+	cd /home/loan/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_common/intera_common/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_common/intera_common/preinstall
+	cd /home/loan/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_common/intera_common/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/loan/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 intera_common/intera_common/CMakeFiles/_catkin_empty_exported_target.dir/rule:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_common/intera_common/CMakeFiles/_catkin_empty_exported_target.dir/rule
+	cd /home/loan/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_common/intera_common/CMakeFiles/_catkin_empty_exported_target.dir/rule
 .PHONY : intera_common/intera_common/CMakeFiles/_catkin_empty_exported_target.dir/rule
 
 # Convenience name for target.
@@ -179,7 +179,7 @@ _catkin_empty_exported_target: intera_common/intera_common/CMakeFiles/_catkin_em
 
 # fast build rule for target.
 _catkin_empty_exported_target/fast:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(MAKE) -f intera_common/intera_common/CMakeFiles/_catkin_empty_exported_target.dir/build.make intera_common/intera_common/CMakeFiles/_catkin_empty_exported_target.dir/build
+	cd /home/loan/sawyer_vision_bartender/build && $(MAKE) -f intera_common/intera_common/CMakeFiles/_catkin_empty_exported_target.dir/build.make intera_common/intera_common/CMakeFiles/_catkin_empty_exported_target.dir/build
 .PHONY : _catkin_empty_exported_target/fast
 
 # Help Target
@@ -207,6 +207,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/loan/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

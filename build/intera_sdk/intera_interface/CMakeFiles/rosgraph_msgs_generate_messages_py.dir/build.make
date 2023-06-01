@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/loan/test_script/sawyer_vision_bartender/src
+CMAKE_SOURCE_DIR = /home/loan/sawyer_vision_bartender/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/loan/test_script/sawyer_vision_bartender/build
+CMAKE_BINARY_DIR = /home/loan/sawyer_vision_bartender/build
 
 # Utility rule file for rosgraph_msgs_generate_messages_py.
 
@@ -63,10 +63,10 @@ intera_sdk/intera_interface/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/bu
 .PHONY : intera_sdk/intera_interface/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 
 intera_sdk/intera_interface/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
-	cd /home/loan/test_script/sawyer_vision_bartender/build/intera_sdk/intera_interface && $(CMAKE_COMMAND) -P CMakeFiles/rosgraph_msgs_generate_messages_py.dir/cmake_clean.cmake
+	cd /home/loan/sawyer_vision_bartender/build/intera_sdk/intera_interface && $(CMAKE_COMMAND) -P CMakeFiles/rosgraph_msgs_generate_messages_py.dir/cmake_clean.cmake
 .PHONY : intera_sdk/intera_interface/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
 
 intera_sdk/intera_interface/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/loan/test_script/sawyer_vision_bartender/src /home/loan/test_script/sawyer_vision_bartender/src/intera_sdk/intera_interface /home/loan/test_script/sawyer_vision_bartender/build /home/loan/test_script/sawyer_vision_bartender/build/intera_sdk/intera_interface /home/loan/test_script/sawyer_vision_bartender/build/intera_sdk/intera_interface/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/loan/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/loan/sawyer_vision_bartender/src /home/loan/sawyer_vision_bartender/src/intera_sdk/intera_interface /home/loan/sawyer_vision_bartender/build /home/loan/sawyer_vision_bartender/build/intera_sdk/intera_interface /home/loan/sawyer_vision_bartender/build/intera_sdk/intera_interface/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : intera_sdk/intera_interface/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend
 

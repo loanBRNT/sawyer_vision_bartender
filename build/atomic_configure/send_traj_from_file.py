@@ -3,7 +3,7 @@
 # generated from catkin/cmake/template/script.py.in
 # creates a relay to a python script source file, acting as that file.
 # The purpose is that of a symlink
-python_script = '/home/loan/test_script/sawyer_vision_bartender/src/intera_sdk/intera_examples/scripts/send_traj_from_file.py'
+python_script = '/home/loan/sawyer_vision_bartender/src/intera_sdk/intera_examples/scripts/send_traj_from_file.py'
 with open(python_script, 'r') as fh:
     context = {
         '__builtins__': __builtins__,

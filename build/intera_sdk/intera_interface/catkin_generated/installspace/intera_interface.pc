@@ -1,4 +1,4 @@
-prefix=/home/loan/test_script/sawyer_vision_bartender/install
+prefix=/home/loan/sawyer_vision_bartender/install
 
 Name: intera_interface
 Description: Description of intera_interface

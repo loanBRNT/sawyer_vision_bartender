@@ -1,8 +1,8 @@
-# Install script for directory: /home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_motion_msgs
+# Install script for directory: /home/loan/sawyer_vision_bartender/src/intera_common/intera_motion_msgs
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/loan/test_script/sawyer_vision_bartender/install")
+  set(CMAKE_INSTALL_PREFIX "/home/loan/sawyer_vision_bartender/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,80 +39,80 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_motion_msgs/msg" TYPE FILE FILES
-    "/home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/EndpointTrackingError.msg"
-    "/home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/InterpolatedPath.msg"
-    "/home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/JointTrackingError.msg"
-    "/home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/MotionStatus.msg"
-    "/home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/TrackingOptions.msg"
-    "/home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/Trajectory.msg"
-    "/home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/TrajectoryAnalysis.msg"
-    "/home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/TrajectoryOptions.msg"
-    "/home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/Waypoint.msg"
-    "/home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/WaypointOptions.msg"
-    "/home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/WaypointSimple.msg"
+    "/home/loan/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/EndpointTrackingError.msg"
+    "/home/loan/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/InterpolatedPath.msg"
+    "/home/loan/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/JointTrackingError.msg"
+    "/home/loan/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/MotionStatus.msg"
+    "/home/loan/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/TrackingOptions.msg"
+    "/home/loan/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/Trajectory.msg"
+    "/home/loan/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/TrajectoryAnalysis.msg"
+    "/home/loan/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/TrajectoryOptions.msg"
+    "/home/loan/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/Waypoint.msg"
+    "/home/loan/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/WaypointOptions.msg"
+    "/home/loan/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/WaypointSimple.msg"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_motion_msgs/action" TYPE FILE FILES "/home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/action/MotionCommand.action")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_motion_msgs/action" TYPE FILE FILES "/home/loan/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/action/MotionCommand.action")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_motion_msgs/msg" TYPE FILE FILES
-    "/home/loan/test_script/sawyer_vision_bartender/devel/share/intera_motion_msgs/msg/MotionCommandAction.msg"
-    "/home/loan/test_script/sawyer_vision_bartender/devel/share/intera_motion_msgs/msg/MotionCommandActionGoal.msg"
-    "/home/loan/test_script/sawyer_vision_bartender/devel/share/intera_motion_msgs/msg/MotionCommandActionResult.msg"
-    "/home/loan/test_script/sawyer_vision_bartender/devel/share/intera_motion_msgs/msg/MotionCommandActionFeedback.msg"
-    "/home/loan/test_script/sawyer_vision_bartender/devel/share/intera_motion_msgs/msg/MotionCommandGoal.msg"
-    "/home/loan/test_script/sawyer_vision_bartender/devel/share/intera_motion_msgs/msg/MotionCommandResult.msg"
-    "/home/loan/test_script/sawyer_vision_bartender/devel/share/intera_motion_msgs/msg/MotionCommandFeedback.msg"
+    "/home/loan/sawyer_vision_bartender/devel/share/intera_motion_msgs/msg/MotionCommandAction.msg"
+    "/home/loan/sawyer_vision_bartender/devel/share/intera_motion_msgs/msg/MotionCommandActionGoal.msg"
+    "/home/loan/sawyer_vision_bartender/devel/share/intera_motion_msgs/msg/MotionCommandActionResult.msg"
+    "/home/loan/sawyer_vision_bartender/devel/share/intera_motion_msgs/msg/MotionCommandActionFeedback.msg"
+    "/home/loan/sawyer_vision_bartender/devel/share/intera_motion_msgs/msg/MotionCommandGoal.msg"
+    "/home/loan/sawyer_vision_bartender/devel/share/intera_motion_msgs/msg/MotionCommandResult.msg"
+    "/home/loan/sawyer_vision_bartender/devel/share/intera_motion_msgs/msg/MotionCommandFeedback.msg"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_motion_msgs/cmake" TYPE FILE FILES "/home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_motion_msgs/catkin_generated/installspace/intera_motion_msgs-msg-paths.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_motion_msgs/cmake" TYPE FILE FILES "/home/loan/sawyer_vision_bartender/build/intera_common/intera_motion_msgs/catkin_generated/installspace/intera_motion_msgs-msg-paths.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/loan/test_script/sawyer_vision_bartender/devel/include/intera_motion_msgs")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/loan/sawyer_vision_bartender/devel/include/intera_motion_msgs")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/loan/test_script/sawyer_vision_bartender/devel/share/roseus/ros/intera_motion_msgs")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/loan/sawyer_vision_bartender/devel/share/roseus/ros/intera_motion_msgs")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/loan/test_script/sawyer_vision_bartender/devel/share/common-lisp/ros/intera_motion_msgs")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/loan/sawyer_vision_bartender/devel/share/common-lisp/ros/intera_motion_msgs")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/loan/test_script/sawyer_vision_bartender/devel/share/gennodejs/ros/intera_motion_msgs")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/loan/sawyer_vision_bartender/devel/share/gennodejs/ros/intera_motion_msgs")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  execute_process(COMMAND "/usr/bin/python3" -m compileall "/home/loan/test_script/sawyer_vision_bartender/devel/lib/python3/dist-packages/intera_motion_msgs")
+  execute_process(COMMAND "/usr/bin/python3" -m compileall "/home/loan/sawyer_vision_bartender/devel/lib/python3/dist-packages/intera_motion_msgs")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3/dist-packages" TYPE DIRECTORY FILES "/home/loan/test_script/sawyer_vision_bartender/devel/lib/python3/dist-packages/intera_motion_msgs")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3/dist-packages" TYPE DIRECTORY FILES "/home/loan/sawyer_vision_bartender/devel/lib/python3/dist-packages/intera_motion_msgs")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_motion_msgs/catkin_generated/installspace/intera_motion_msgs.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/loan/sawyer_vision_bartender/build/intera_common/intera_motion_msgs/catkin_generated/installspace/intera_motion_msgs.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_motion_msgs/cmake" TYPE FILE FILES "/home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_motion_msgs/catkin_generated/installspace/intera_motion_msgs-msg-extras.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_motion_msgs/cmake" TYPE FILE FILES "/home/loan/sawyer_vision_bartender/build/intera_common/intera_motion_msgs/catkin_generated/installspace/intera_motion_msgs-msg-extras.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_motion_msgs/cmake" TYPE FILE FILES
-    "/home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_motion_msgs/catkin_generated/installspace/intera_motion_msgsConfig.cmake"
-    "/home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_motion_msgs/catkin_generated/installspace/intera_motion_msgsConfig-version.cmake"
+    "/home/loan/sawyer_vision_bartender/build/intera_common/intera_motion_msgs/catkin_generated/installspace/intera_motion_msgsConfig.cmake"
+    "/home/loan/sawyer_vision_bartender/build/intera_common/intera_motion_msgs/catkin_generated/installspace/intera_motion_msgsConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_motion_msgs" TYPE FILE FILES "/home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_motion_msgs" TYPE FILE FILES "/home/loan/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/package.xml")
 endif()
 

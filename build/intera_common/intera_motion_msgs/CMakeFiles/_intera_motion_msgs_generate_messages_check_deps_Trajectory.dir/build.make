@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/loan/test_script/sawyer_vision_bartender/src
+CMAKE_SOURCE_DIR = /home/loan/sawyer_vision_bartender/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/loan/test_script/sawyer_vision_bartender/build
+CMAKE_BINARY_DIR = /home/loan/sawyer_vision_bartender/build
 
 # Utility rule file for _intera_motion_msgs_generate_messages_check_deps_Trajectory.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/loan/test_script/sawyer_vision_bartender/build
 include intera_common/intera_motion_msgs/CMakeFiles/_intera_motion_msgs_generate_messages_check_deps_Trajectory.dir/progress.make
 
 intera_common/intera_motion_msgs/CMakeFiles/_intera_motion_msgs_generate_messages_check_deps_Trajectory:
-	cd /home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_motion_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py intera_motion_msgs /home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/Trajectory.msg geometry_msgs/PoseStamped:intera_motion_msgs/TrackingOptions:intera_motion_msgs/TrajectoryOptions:std_msgs/Header:intera_motion_msgs/Waypoint:geometry_msgs/Point:geometry_msgs/Quaternion:intera_motion_msgs/WaypointOptions:intera_core_msgs/InteractionControlCommand:geometry_msgs/Pose
+	cd /home/loan/sawyer_vision_bartender/build/intera_common/intera_motion_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py intera_motion_msgs /home/loan/sawyer_vision_bartender/src/intera_common/intera_motion_msgs/msg/Trajectory.msg geometry_msgs/Point:geometry_msgs/Quaternion:geometry_msgs/Pose:intera_motion_msgs/TrajectoryOptions:intera_core_msgs/InteractionControlCommand:intera_motion_msgs/WaypointOptions:geometry_msgs/PoseStamped:intera_motion_msgs/Waypoint:intera_motion_msgs/TrackingOptions:std_msgs/Header
 
 _intera_motion_msgs_generate_messages_check_deps_Trajectory: intera_common/intera_motion_msgs/CMakeFiles/_intera_motion_msgs_generate_messages_check_deps_Trajectory
 _intera_motion_msgs_generate_messages_check_deps_Trajectory: intera_common/intera_motion_msgs/CMakeFiles/_intera_motion_msgs_generate_messages_check_deps_Trajectory.dir/build.make
@@ -67,10 +67,10 @@ intera_common/intera_motion_msgs/CMakeFiles/_intera_motion_msgs_generate_message
 .PHONY : intera_common/intera_motion_msgs/CMakeFiles/_intera_motion_msgs_generate_messages_check_deps_Trajectory.dir/build
 
 intera_common/intera_motion_msgs/CMakeFiles/_intera_motion_msgs_generate_messages_check_deps_Trajectory.dir/clean:
-	cd /home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_motion_msgs && $(CMAKE_COMMAND) -P CMakeFiles/_intera_motion_msgs_generate_messages_check_deps_Trajectory.dir/cmake_clean.cmake
+	cd /home/loan/sawyer_vision_bartender/build/intera_common/intera_motion_msgs && $(CMAKE_COMMAND) -P CMakeFiles/_intera_motion_msgs_generate_messages_check_deps_Trajectory.dir/cmake_clean.cmake
 .PHONY : intera_common/intera_motion_msgs/CMakeFiles/_intera_motion_msgs_generate_messages_check_deps_Trajectory.dir/clean
 
 intera_common/intera_motion_msgs/CMakeFiles/_intera_motion_msgs_generate_messages_check_deps_Trajectory.dir/depend:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/loan/test_script/sawyer_vision_bartender/src /home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_motion_msgs /home/loan/test_script/sawyer_vision_bartender/build /home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_motion_msgs /home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_motion_msgs/CMakeFiles/_intera_motion_msgs_generate_messages_check_deps_Trajectory.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/loan/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/loan/sawyer_vision_bartender/src /home/loan/sawyer_vision_bartender/src/intera_common/intera_motion_msgs /home/loan/sawyer_vision_bartender/build /home/loan/sawyer_vision_bartender/build/intera_common/intera_motion_msgs /home/loan/sawyer_vision_bartender/build/intera_common/intera_motion_msgs/CMakeFiles/_intera_motion_msgs_generate_messages_check_deps_Trajectory.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : intera_common/intera_motion_msgs/CMakeFiles/_intera_motion_msgs_generate_messages_check_deps_Trajectory.dir/depend
 

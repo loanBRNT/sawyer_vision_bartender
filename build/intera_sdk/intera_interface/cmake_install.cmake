@@ -1,8 +1,8 @@
-# Install script for directory: /home/loan/test_script/sawyer_vision_bartender/src/intera_sdk/intera_interface
+# Install script for directory: /home/loan/sawyer_vision_bartender/src/intera_sdk/intera_interface
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/loan/test_script/sawyer_vision_bartender/install")
+  set(CMAKE_INSTALL_PREFIX "/home/loan/sawyer_vision_bartender/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,69 +38,69 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  include("/home/loan/test_script/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/safe_execute_install.cmake")
+  include("/home/loan/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/safe_execute_install.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/intera_interface" TYPE FILE FILES "/home/loan/test_script/sawyer_vision_bartender/devel/include/intera_interface/SawyerPositionJointTrajectoryActionServerConfig.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/intera_interface" TYPE FILE FILES "/home/loan/sawyer_vision_bartender/devel/include/intera_interface/SawyerPositionJointTrajectoryActionServerConfig.h")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/intera_interface" TYPE FILE FILES "/home/loan/test_script/sawyer_vision_bartender/devel/include/intera_interface/SawyerVelocityJointTrajectoryActionServerConfig.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/intera_interface" TYPE FILE FILES "/home/loan/sawyer_vision_bartender/devel/include/intera_interface/SawyerVelocityJointTrajectoryActionServerConfig.h")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/intera_interface" TYPE FILE FILES "/home/loan/test_script/sawyer_vision_bartender/devel/include/intera_interface/SawyerPositionFFJointTrajectoryActionServerConfig.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/intera_interface" TYPE FILE FILES "/home/loan/sawyer_vision_bartender/devel/include/intera_interface/SawyerPositionFFJointTrajectoryActionServerConfig.h")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  execute_process(COMMAND "/usr/bin/python3" -m compileall "/home/loan/test_script/sawyer_vision_bartender/devel/lib/python3/dist-packages/intera_interface/cfg")
+  execute_process(COMMAND "/usr/bin/python3" -m compileall "/home/loan/sawyer_vision_bartender/devel/lib/python3/dist-packages/intera_interface/cfg")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3/dist-packages/intera_interface" TYPE DIRECTORY FILES "/home/loan/test_script/sawyer_vision_bartender/devel/lib/python3/dist-packages/intera_interface/cfg")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3/dist-packages/intera_interface" TYPE DIRECTORY FILES "/home/loan/sawyer_vision_bartender/devel/lib/python3/dist-packages/intera_interface/cfg")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/loan/test_script/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/intera_interface.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/loan/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/intera_interface.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_interface/cmake" TYPE FILE FILES
-    "/home/loan/test_script/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/intera_interfaceConfig.cmake"
-    "/home/loan/test_script/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/intera_interfaceConfig-version.cmake"
+    "/home/loan/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/intera_interfaceConfig.cmake"
+    "/home/loan/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/intera_interfaceConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_interface" TYPE FILE FILES "/home/loan/test_script/sawyer_vision_bartender/src/intera_sdk/intera_interface/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_interface" TYPE FILE FILES "/home/loan/sawyer_vision_bartender/src/intera_sdk/intera_interface/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/intera_interface" TYPE PROGRAM FILES "/home/loan/test_script/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/home_joints.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/intera_interface" TYPE PROGRAM FILES "/home/loan/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/home_joints.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/intera_interface" TYPE PROGRAM FILES "/home/loan/test_script/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/joint_trajectory_action_server.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/intera_interface" TYPE PROGRAM FILES "/home/loan/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/joint_trajectory_action_server.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/intera_interface" TYPE PROGRAM FILES "/home/loan/test_script/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/calibrate_arm.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/intera_interface" TYPE PROGRAM FILES "/home/loan/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/calibrate_arm.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/intera_interface" TYPE PROGRAM FILES "/home/loan/test_script/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/io_config_editor.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/intera_interface" TYPE PROGRAM FILES "/home/loan/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/io_config_editor.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/intera_interface" TYPE PROGRAM FILES "/home/loan/test_script/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/send_urdf_fragment.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/intera_interface" TYPE PROGRAM FILES "/home/loan/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/send_urdf_fragment.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/intera_interface" TYPE PROGRAM FILES "/home/loan/test_script/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/enable_robot.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/intera_interface" TYPE PROGRAM FILES "/home/loan/sawyer_vision_bartender/build/intera_sdk/intera_interface/catkin_generated/installspace/enable_robot.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/intera_interface" TYPE DIRECTORY FILES "/home/loan/test_script/sawyer_vision_bartender/src/intera_sdk/intera_interface/scripts/" USE_SOURCE_PERMISSIONS)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/intera_interface" TYPE DIRECTORY FILES "/home/loan/sawyer_vision_bartender/src/intera_sdk/intera_interface/scripts/" USE_SOURCE_PERMISSIONS)
 endif()
 

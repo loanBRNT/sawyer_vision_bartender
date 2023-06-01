@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/loan/test_script/sawyer_vision_bartender/src
+CMAKE_SOURCE_DIR = /home/loan/sawyer_vision_bartender/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/loan/test_script/sawyer_vision_bartender/build
+CMAKE_BINARY_DIR = /home/loan/sawyer_vision_bartender/build
 
 # Utility rule file for roscpp_generate_messages_lisp.
 
@@ -63,10 +63,10 @@ intera_sdk/intera_interface/CMakeFiles/roscpp_generate_messages_lisp.dir/build: 
 .PHONY : intera_sdk/intera_interface/CMakeFiles/roscpp_generate_messages_lisp.dir/build
 
 intera_sdk/intera_interface/CMakeFiles/roscpp_generate_messages_lisp.dir/clean:
-	cd /home/loan/test_script/sawyer_vision_bartender/build/intera_sdk/intera_interface && $(CMAKE_COMMAND) -P CMakeFiles/roscpp_generate_messages_lisp.dir/cmake_clean.cmake
+	cd /home/loan/sawyer_vision_bartender/build/intera_sdk/intera_interface && $(CMAKE_COMMAND) -P CMakeFiles/roscpp_generate_messages_lisp.dir/cmake_clean.cmake
 .PHONY : intera_sdk/intera_interface/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
 
 intera_sdk/intera_interface/CMakeFiles/roscpp_generate_messages_lisp.dir/depend:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/loan/test_script/sawyer_vision_bartender/src /home/loan/test_script/sawyer_vision_bartender/src/intera_sdk/intera_interface /home/loan/test_script/sawyer_vision_bartender/build /home/loan/test_script/sawyer_vision_bartender/build/intera_sdk/intera_interface /home/loan/test_script/sawyer_vision_bartender/build/intera_sdk/intera_interface/CMakeFiles/roscpp_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/loan/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/loan/sawyer_vision_bartender/src /home/loan/sawyer_vision_bartender/src/intera_sdk/intera_interface /home/loan/sawyer_vision_bartender/build /home/loan/sawyer_vision_bartender/build/intera_sdk/intera_interface /home/loan/sawyer_vision_bartender/build/intera_sdk/intera_interface/CMakeFiles/roscpp_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : intera_sdk/intera_interface/CMakeFiles/roscpp_generate_messages_lisp.dir/depend
 

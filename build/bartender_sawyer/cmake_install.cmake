@@ -1,8 +1,8 @@
-# Install script for directory: /home/loan/test_script/sawyer_vision_bartender/src/bartender_sawyer
+# Install script for directory: /home/loan/sawyer_vision_bartender/src/bartender_sawyer
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/loan/test_script/sawyer_vision_bartender/install")
+  set(CMAKE_INSTALL_PREFIX "/home/loan/sawyer_vision_bartender/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,61 +38,61 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/loan/test_script/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/bartender_sawyer.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/loan/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/bartender_sawyer.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/bartender_sawyer/cmake" TYPE FILE FILES
-    "/home/loan/test_script/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/bartender_sawyerConfig.cmake"
-    "/home/loan/test_script/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/bartender_sawyerConfig-version.cmake"
+    "/home/loan/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/bartender_sawyerConfig.cmake"
+    "/home/loan/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/bartender_sawyerConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/bartender_sawyer" TYPE FILE FILES "/home/loan/test_script/sawyer_vision_bartender/src/bartender_sawyer/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/bartender_sawyer" TYPE FILE FILES "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/test_script/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/hi.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/hi.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/test_script/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/pour.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/pour.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/test_script/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/get_pos.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/get_pos.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/test_script/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/gripper_actions.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/gripper_actions.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/test_script/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/get_glass.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/get_glass.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/test_script/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/display.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/display.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/test_script/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/lights.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/lights.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/test_script/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/camera.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/camera.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/test_script/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/glass_detection.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/glass_detection.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/test_script/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/initialisation.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/initialisation.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/test_script/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/take_photo.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bartender_sawyer" TYPE PROGRAM FILES "/home/loan/sawyer_vision_bartender/build/bartender_sawyer/catkin_generated/installspace/take_photo.py")
 endif()
 

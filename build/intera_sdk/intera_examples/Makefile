@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/loan/test_script/sawyer_vision_bartender/src
+CMAKE_SOURCE_DIR = /home/loan/sawyer_vision_bartender/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/loan/test_script/sawyer_vision_bartender/build
+CMAKE_BINARY_DIR = /home/loan/sawyer_vision_bartender/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -137,14 +137,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/loan/test_script/sawyer_vision_bartender/build/CMakeFiles /home/loan/test_script/sawyer_vision_bartender/build/intera_sdk/intera_examples/CMakeFiles/progress.marks
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_sdk/intera_examples/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/loan/test_script/sawyer_vision_bartender/build/CMakeFiles 0
+	cd /home/loan/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/loan/sawyer_vision_bartender/build/CMakeFiles /home/loan/sawyer_vision_bartender/build/intera_sdk/intera_examples/CMakeFiles/progress.marks
+	cd /home/loan/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_sdk/intera_examples/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/loan/sawyer_vision_bartender/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_sdk/intera_examples/clean
+	cd /home/loan/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_sdk/intera_examples/clean
 .PHONY : clean
 
 # The main clean target
@@ -154,22 +154,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_sdk/intera_examples/preinstall
+	cd /home/loan/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_sdk/intera_examples/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_sdk/intera_examples/preinstall
+	cd /home/loan/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_sdk/intera_examples/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/loan/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 intera_sdk/intera_examples/CMakeFiles/intera_examples_gencfg.dir/rule:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_sdk/intera_examples/CMakeFiles/intera_examples_gencfg.dir/rule
+	cd /home/loan/sawyer_vision_bartender/build && $(MAKE) -f CMakeFiles/Makefile2 intera_sdk/intera_examples/CMakeFiles/intera_examples_gencfg.dir/rule
 .PHONY : intera_sdk/intera_examples/CMakeFiles/intera_examples_gencfg.dir/rule
 
 # Convenience name for target.
@@ -179,7 +179,7 @@ intera_examples_gencfg: intera_sdk/intera_examples/CMakeFiles/intera_examples_ge
 
 # fast build rule for target.
 intera_examples_gencfg/fast:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(MAKE) -f intera_sdk/intera_examples/CMakeFiles/intera_examples_gencfg.dir/build.make intera_sdk/intera_examples/CMakeFiles/intera_examples_gencfg.dir/build
+	cd /home/loan/sawyer_vision_bartender/build && $(MAKE) -f intera_sdk/intera_examples/CMakeFiles/intera_examples_gencfg.dir/build.make intera_sdk/intera_examples/CMakeFiles/intera_examples_gencfg.dir/build
 .PHONY : intera_examples_gencfg/fast
 
 # Help Target
@@ -207,6 +207,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/loan/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

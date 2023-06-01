@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "/usr/src/googletest")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/loan/test_script/sawyer_vision_bartender/build")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/loan/sawyer_vision_bartender/build")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)

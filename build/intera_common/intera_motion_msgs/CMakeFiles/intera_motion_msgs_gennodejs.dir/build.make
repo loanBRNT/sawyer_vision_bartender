@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/loan/test_script/sawyer_vision_bartender/src
+CMAKE_SOURCE_DIR = /home/loan/sawyer_vision_bartender/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/loan/test_script/sawyer_vision_bartender/build
+CMAKE_BINARY_DIR = /home/loan/sawyer_vision_bartender/build
 
 # Utility rule file for intera_motion_msgs_gennodejs.
 
@@ -63,10 +63,10 @@ intera_common/intera_motion_msgs/CMakeFiles/intera_motion_msgs_gennodejs.dir/bui
 .PHONY : intera_common/intera_motion_msgs/CMakeFiles/intera_motion_msgs_gennodejs.dir/build
 
 intera_common/intera_motion_msgs/CMakeFiles/intera_motion_msgs_gennodejs.dir/clean:
-	cd /home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_motion_msgs && $(CMAKE_COMMAND) -P CMakeFiles/intera_motion_msgs_gennodejs.dir/cmake_clean.cmake
+	cd /home/loan/sawyer_vision_bartender/build/intera_common/intera_motion_msgs && $(CMAKE_COMMAND) -P CMakeFiles/intera_motion_msgs_gennodejs.dir/cmake_clean.cmake
 .PHONY : intera_common/intera_motion_msgs/CMakeFiles/intera_motion_msgs_gennodejs.dir/clean
 
 intera_common/intera_motion_msgs/CMakeFiles/intera_motion_msgs_gennodejs.dir/depend:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/loan/test_script/sawyer_vision_bartender/src /home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_motion_msgs /home/loan/test_script/sawyer_vision_bartender/build /home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_motion_msgs /home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_motion_msgs/CMakeFiles/intera_motion_msgs_gennodejs.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/loan/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/loan/sawyer_vision_bartender/src /home/loan/sawyer_vision_bartender/src/intera_common/intera_motion_msgs /home/loan/sawyer_vision_bartender/build /home/loan/sawyer_vision_bartender/build/intera_common/intera_motion_msgs /home/loan/sawyer_vision_bartender/build/intera_common/intera_motion_msgs/CMakeFiles/intera_motion_msgs_gennodejs.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : intera_common/intera_motion_msgs/CMakeFiles/intera_motion_msgs_gennodejs.dir/depend
 

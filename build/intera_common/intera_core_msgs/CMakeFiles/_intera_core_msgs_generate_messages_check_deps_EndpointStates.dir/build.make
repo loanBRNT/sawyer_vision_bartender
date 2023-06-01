@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/loan/test_script/sawyer_vision_bartender/src
+CMAKE_SOURCE_DIR = /home/loan/sawyer_vision_bartender/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/loan/test_script/sawyer_vision_bartender/build
+CMAKE_BINARY_DIR = /home/loan/sawyer_vision_bartender/build
 
 # Utility rule file for _intera_core_msgs_generate_messages_check_deps_EndpointStates.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/loan/test_script/sawyer_vision_bartender/build
 include intera_common/intera_core_msgs/CMakeFiles/_intera_core_msgs_generate_messages_check_deps_EndpointStates.dir/progress.make
 
 intera_common/intera_core_msgs/CMakeFiles/_intera_core_msgs_generate_messages_check_deps_EndpointStates:
-	cd /home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_core_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py intera_core_msgs /home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_core_msgs/msg/EndpointStates.msg geometry_msgs/Pose:geometry_msgs/Vector3:std_msgs/Header:intera_core_msgs/EndpointState:geometry_msgs/Wrench:geometry_msgs/Twist:geometry_msgs/Point:geometry_msgs/Quaternion
+	cd /home/loan/sawyer_vision_bartender/build/intera_common/intera_core_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py intera_core_msgs /home/loan/sawyer_vision_bartender/src/intera_common/intera_core_msgs/msg/EndpointStates.msg geometry_msgs/Point:geometry_msgs/Quaternion:geometry_msgs/Vector3:geometry_msgs/Pose:geometry_msgs/Twist:geometry_msgs/Wrench:intera_core_msgs/EndpointState:std_msgs/Header
 
 _intera_core_msgs_generate_messages_check_deps_EndpointStates: intera_common/intera_core_msgs/CMakeFiles/_intera_core_msgs_generate_messages_check_deps_EndpointStates
 _intera_core_msgs_generate_messages_check_deps_EndpointStates: intera_common/intera_core_msgs/CMakeFiles/_intera_core_msgs_generate_messages_check_deps_EndpointStates.dir/build.make
@@ -67,10 +67,10 @@ intera_common/intera_core_msgs/CMakeFiles/_intera_core_msgs_generate_messages_ch
 .PHONY : intera_common/intera_core_msgs/CMakeFiles/_intera_core_msgs_generate_messages_check_deps_EndpointStates.dir/build
 
 intera_common/intera_core_msgs/CMakeFiles/_intera_core_msgs_generate_messages_check_deps_EndpointStates.dir/clean:
-	cd /home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_core_msgs && $(CMAKE_COMMAND) -P CMakeFiles/_intera_core_msgs_generate_messages_check_deps_EndpointStates.dir/cmake_clean.cmake
+	cd /home/loan/sawyer_vision_bartender/build/intera_common/intera_core_msgs && $(CMAKE_COMMAND) -P CMakeFiles/_intera_core_msgs_generate_messages_check_deps_EndpointStates.dir/cmake_clean.cmake
 .PHONY : intera_common/intera_core_msgs/CMakeFiles/_intera_core_msgs_generate_messages_check_deps_EndpointStates.dir/clean
 
 intera_common/intera_core_msgs/CMakeFiles/_intera_core_msgs_generate_messages_check_deps_EndpointStates.dir/depend:
-	cd /home/loan/test_script/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/loan/test_script/sawyer_vision_bartender/src /home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_core_msgs /home/loan/test_script/sawyer_vision_bartender/build /home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_core_msgs /home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_core_msgs/CMakeFiles/_intera_core_msgs_generate_messages_check_deps_EndpointStates.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/loan/sawyer_vision_bartender/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/loan/sawyer_vision_bartender/src /home/loan/sawyer_vision_bartender/src/intera_common/intera_core_msgs /home/loan/sawyer_vision_bartender/build /home/loan/sawyer_vision_bartender/build/intera_common/intera_core_msgs /home/loan/sawyer_vision_bartender/build/intera_common/intera_core_msgs/CMakeFiles/_intera_core_msgs_generate_messages_check_deps_EndpointStates.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : intera_common/intera_core_msgs/CMakeFiles/_intera_core_msgs_generate_messages_check_deps_EndpointStates.dir/depend
 

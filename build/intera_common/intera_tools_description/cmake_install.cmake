@@ -1,8 +1,8 @@
-# Install script for directory: /home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_tools_description
+# Install script for directory: /home/loan/sawyer_vision_bartender/src/intera_common/intera_tools_description
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/loan/test_script/sawyer_vision_bartender/install")
+  set(CMAKE_INSTALL_PREFIX "/home/loan/sawyer_vision_bartender/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,25 +38,25 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_tools_description/catkin_generated/installspace/intera_tools_description.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/loan/sawyer_vision_bartender/build/intera_common/intera_tools_description/catkin_generated/installspace/intera_tools_description.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_tools_description/cmake" TYPE FILE FILES
-    "/home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_tools_description/catkin_generated/installspace/intera_tools_descriptionConfig.cmake"
-    "/home/loan/test_script/sawyer_vision_bartender/build/intera_common/intera_tools_description/catkin_generated/installspace/intera_tools_descriptionConfig-version.cmake"
+    "/home/loan/sawyer_vision_bartender/build/intera_common/intera_tools_description/catkin_generated/installspace/intera_tools_descriptionConfig.cmake"
+    "/home/loan/sawyer_vision_bartender/build/intera_common/intera_tools_description/catkin_generated/installspace/intera_tools_descriptionConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_tools_description" TYPE FILE FILES "/home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_tools_description/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_tools_description" TYPE FILE FILES "/home/loan/sawyer_vision_bartender/src/intera_common/intera_tools_description/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_tools_description/meshes" TYPE DIRECTORY FILES "/home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_tools_description/meshes/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_tools_description/meshes" TYPE DIRECTORY FILES "/home/loan/sawyer_vision_bartender/src/intera_common/intera_tools_description/meshes/")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_tools_description/urdf" TYPE DIRECTORY FILES "/home/loan/test_script/sawyer_vision_bartender/src/intera_common/intera_tools_description/urdf/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/intera_tools_description/urdf" TYPE DIRECTORY FILES "/home/loan/sawyer_vision_bartender/src/intera_common/intera_tools_description/urdf/")
 endif()
 
