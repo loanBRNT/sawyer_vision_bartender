@@ -11,6 +11,8 @@ def get_pos():
 	limb = intera_interface.Limb('right')
 	print("joint angles :")
 	print(limb.joint_angles())
+	print("cartesian pose")
+	print(limb.endpoint_pose())
 	
 if __name__ == '__main__':
 	try:

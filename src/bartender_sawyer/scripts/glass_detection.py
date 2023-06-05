@@ -2,13 +2,37 @@
 
 import rospy
 import intera_interface
-import argparse
 import numpy as np
 import cv2
 import torch
-from time import time
+import threading
+import time
+
+from intera_motion_interface import (
+    MotionTrajectory,
+    MotionWaypoint,
+    MotionWaypointOptions
+)
+
+from intera_motion_msgs.msg import TrajectoryOptions
+from geometry_msgs.msg import PoseStamped
+import PyKDL
+from tf_conversions import posemath
+
 #import pandas, tqdm, ultralytics
 from cv_bridge import CvBridge, CvBridgeError
+
+################ POSITIONS ###############
+
+pos_detect_glass = {'right_j0': -0.5741767578125, 'right_j1': 1.252578125, 'right_j2': -1.499646484375, 'right_j3': 0.5307412109375, 'right_j4': 2.46829296875, 'right_j5': -2.489435546875, 'right_j6': -1.50}
+
+wpt_opts = MotionWaypointOptions(max_linear_speed=0.6,
+                                         max_linear_accel=0.6,
+                                         max_rotational_speed=1.57,
+                                         max_rotational_accel=1.57,
+                                         max_joint_speed_ratio=1.0)
+
+################ CLASS ###############
 
 class DetectionYolov5:
 	"""
@@ -49,62 +73,165 @@ class DetectionYolov5:
 	def __call__(self,frame):
 		frame = cv2.resize(frame, (640,640))
 		
-		start = time()
+		start = time.time()
 		
 		results = self.score_frame(frame)
-		rospy.loginfo(results)
 		
-		end = time()
-		rospy.loginfo("Temps d'exec : '{0}'".format(end-start))
-		cv2.namedWindow('detection', 0)
-		cv2.imshow('detection', frame)
-		cv2.waitKey(3)
+		end = time.time()
 		
-#[INFO] [1685606991.576636]: Temps d'exec : '0.9965267181396484'
-#[INFO] [1685606992.595954]: (tensor([0., 0.]), tensor([[0.40105, 0.35511, 0.70320, 0.93421, 0.75446],[0.65591, 0.07500, 0.97888, 0.69733, 0.32177]]))
-detection = DetectionYolov5('/home/loan/sawyer_vision_bartender/model/best.pt')
+		return results
+		
+		
+
+################ FUNCTIONS ###############
+
+
+detection = None
+tab = []
 
 def show_image_callback(img_data):
     """The callback function to show image by using CvBridge and cv
     """
     global detection
+    global tab
 
     bridge = CvBridge()
     try:
         cv_image = bridge.imgmsg_to_cv2(img_data, "bgr8")
-        detection(cv_image)
+        tab.append(detection(cv_image))
     except CvBridgeError as err:
         rospy.logerr(err)
         return
+        
+def init_detection():
+    global detection
+    
+    detection = DetectionYolov5('/home/loan/sawyer_vision_bartender/model/best_small.pt')
+
+def extract_mean_coord(tab):
+    tab_mean=[]
+    j = len(tab)-1
+    coef=0
+    while j > len(tab)/2 :
+    	labels, coord = tab[j]
+    	n = len(labels)
+    	coord = coord.clone()
+    	for i in range(n):
+    	    if coef == 0:
+    	    	tab_mean.append(coord[i])
+    	    if n == len(tab_mean):
+    	    	for k in range(5):
+    	    		tab_mean[i][k]= (tab_mean[i][k] * coef + coord[i][k]) / (coef + 1)
+    	j-=1
+    	coef+=1
+    return tab_mean
+    
+def coord_from_best(tab):
+    if tab is None:
+    	return None, None, None, None, 0
+
+    indice=0
+    
+    for i in range(1,len(tab)):
+    	if tab[indice][4] < tab[i][4]:
+    		indice=i
+    
+    return float(tab[indice][0]), float(tab[indice][1]), float(tab[indice][2]), float(tab[indice][3]), float(tab[indice][4])
+    
+def recup_glass(x1, y1, x2, y2, limb,traj):
+	limb.move_to_joint_positions({'right_j0': -0.5622265625, 'right_j1': 1.274091796875, 'right_j2': -1.50917578125, 'right_j3': 0.548138671875, 'right_j4': 2.456970703125, 'right_j5': -0.8510107421875, 'right_j6': -1.3545029296875})
+	
+	pre_point = MotionWaypoint(options = wpt_opts.to_msg(), limb = limb)
+	
+	endpoint_state = limb.tip_state('right_hand')
+	pose = endpoint_state.pose
+	
+	y_offset = x2 - 0.5
+	rot = PyKDL.Rotation.RPY(0, 0, 0)
+	trans = PyKDL.Vector(0, y_offset, 0.1)
+	
+	f = PyKDL.Frame(rot, trans)
+	pose = posemath.toMsg(posemath.fromMsg(pose) * f)
+	
+	poseStamped = PoseStamped()
+	poseStamped.pose = pose
+	
+	joint_angles = limb.joint_ordered_angles()
+	pre_point.set_cartesian_pose(poseStamped, 'right_hand', joint_angles)
+	
+	traj.append_waypoint(pre_point.to_msg())
+	
+	result = traj.send_trajectory()
+	if result is None:
+            rospy.logerr('Trajectory FAILED to send')
+            return
+
+	if result.result:
+            rospy.loginfo('Motion controller successfully finished the trajectory!')
+	else:
+            rospy.logerr('Motion controller failed to complete the trajectory with error %s',
+                         result.errorId)
+
 
 def glass_detection():
+    
+    init_thread = threading.Thread(target=init_detection)
+    init_thread.start()
 
     rp = intera_interface.RobotParams()
-    cam = 'right_hand_camera'
-
-    parser = argparse.ArgumentParser()
-    #parser.add_argument('-c', '--camera', type=str, default="head_camera",help='Setup Camera Name for Camera Display')
-    args = parser.parse_args()
 
     print("Initializing node... ")
     rospy.init_node('glass_detection')
+    
+    l = intera_interface.Limb('right')
+    li = intera_interface.Lights()
+    li.set_light_state("head_red_light",True)
+    
+    traj_options = TrajectoryOptions()
+    traj_options.interpolation_type = TrajectoryOptions.CARTESIAN
+    traj = MotionTrajectory(trajectory_options = traj_options, limb = l)    
+    
+    cam = 'right_hand_camera'
+
+    l.set_joint_position_speed(0.3)	
+    l.move_to_joint_positions(pos_detect_glass)
+    
     cameras = intera_interface.Cameras()
-
     cameras.start_streaming(cam)
-
+    cameras.set_exposure(cam, 5)
+    
+    init_thread.join()
+    
+    li.set_light_state("head_red_light",False)
+    li.set_light_state("head_green_light",True)
+    
+    global detection
+    
     cameras.set_callback(cam, show_image_callback,
         rectify_image=True)
-
-    cameras.set_exposure(cam, 5)
-
-    def clean_shutdown():
-        print("Shutting down")
-        cv2.destroyAllWindows()
-
-    rospy.on_shutdown(clean_shutdown)
-    rospy.loginfo("Camera running. Ctrl-c to quit")
-    rospy.spin()
-
+    
+    global tab
+    
+    time.sleep(2)
+    
+    cameras.stop_streaming(cam)
+    
+    
+    
+    x1, y1, x2, y2, conf = coord_from_best(extract_mean_coord(tab))
+    
+    print(str(x1) +","+ str(y1)+","+str(x2)+","+str(y2)+","+str(conf))
+    
+    li.set_light_state("head_green_light",False)
+    
+    if conf < 0.5:
+    	l.move_ton_neutral()
+    
+    recup_glass(x1, y1, x2, y2, l, traj)
+    
+ 
+    
+    
 if __name__ == '__main__':
 	try:
 		glass_detection()
