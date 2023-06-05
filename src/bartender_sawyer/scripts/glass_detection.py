@@ -24,7 +24,9 @@ from cv_bridge import CvBridge, CvBridgeError
 
 ################ POSITIONS ###############
 
-pos_detect_glass = {'right_j0': -0.5741767578125, 'right_j1': 1.252578125, 'right_j2': -1.499646484375, 'right_j3': 0.5307412109375, 'right_j4': 2.46829296875, 'right_j5': -2.489435546875, 'right_j6': -1.50}
+pos_detect_glass = {'right_j0': -0.956154296875, 'right_j1': -0.7500234375, 'right_j2': -0.0840078125, 'right_j3': 2.1074306640625, 'right_j4': 0.52949609375, 'right_j5': -2.9210869140625, 'right_j6': -1.271640625}
+
+pos_gen = {'right_j0': -0.8131884765625, 'right_j1': -0.7814609375, 'right_j2': -0.4102216796875, 'right_j3': 2.03480078125, 'right_j4': 0.441275390625, 'right_j5': -0.8432001953125, 'right_j6': -1.2724794921875}
 
 wpt_opts = MotionWaypointOptions(max_linear_speed=0.6,
                                          max_linear_accel=0.6,
@@ -127,7 +129,7 @@ def extract_mean_coord(tab):
     return tab_mean
     
 def coord_from_best(tab):
-    if tab is None:
+    if not tab:
     	return None, None, None, None, 0
 
     indice=0
@@ -139,27 +141,31 @@ def coord_from_best(tab):
     return float(tab[indice][0]), float(tab[indice][1]), float(tab[indice][2]), float(tab[indice][3]), float(tab[indice][4])
     
 def recup_glass(x1, y1, x2, y2, limb,traj):
-	limb.move_to_joint_positions({'right_j0': -0.5622265625, 'right_j1': 1.274091796875, 'right_j2': -1.50917578125, 'right_j3': 0.548138671875, 'right_j4': 2.456970703125, 'right_j5': -0.8510107421875, 'right_j6': -1.3545029296875})
-	
 	pre_point = MotionWaypoint(options = wpt_opts.to_msg(), limb = limb)
+	get_point = MotionWaypoint(options = wpt_opts.to_msg(), limb = limb)
+	got_point = MotionWaypoint(options = wpt_opts.to_msg(), limb = limb)
+	poseStamped = PoseStamped()
 	
 	endpoint_state = limb.tip_state('right_hand')
 	pose = endpoint_state.pose
 	
-	y_offset = x2 - 0.5
+	offset = (0.5 - (x1+x2)/2)/2.4
+	rospy.loginfo(offset)
+	
+	####### CONFIGURE PRE
 	rot = PyKDL.Rotation.RPY(0, 0, 0)
-	trans = PyKDL.Vector(0, y_offset, 0.1)
+	trans = PyKDL.Vector(offset, 0, 0)
 	
 	f = PyKDL.Frame(rot, trans)
-	pose = posemath.toMsg(posemath.fromMsg(pose) * f)
+	pose = posemath.toMsg(f*posemath.fromMsg(pose))
 	
-	poseStamped = PoseStamped()
 	poseStamped.pose = pose
 	
 	joint_angles = limb.joint_ordered_angles()
 	pre_point.set_cartesian_pose(poseStamped, 'right_hand', joint_angles)
 	
 	traj.append_waypoint(pre_point.to_msg())
+	#traj.append_waypoint(get_point.to_msg())
 	
 	result = traj.send_trajectory()
 	if result is None:
@@ -171,6 +177,35 @@ def recup_glass(x1, y1, x2, y2, limb,traj):
 	else:
             rospy.logerr('Motion controller failed to complete the trajectory with error %s',
                          result.errorId)
+                         
+	####### CONFIGURE GET
+	endpoint_state = limb.tip_state('right_hand')
+	pose = endpoint_state.pose
+	rot = PyKDL.Rotation.RPY(0, 0, 0)
+	trans = PyKDL.Vector(0, -0.15, 0)
+	
+	f = PyKDL.Frame(rot, trans)
+	pose = posemath.toMsg(f*posemath.fromMsg(pose))
+	
+	poseStamped = PoseStamped()
+	poseStamped.pose = pose
+	
+	joint_angles = limb.joint_ordered_angles()
+	pre_point.set_cartesian_pose(poseStamped, 'right_hand', joint_angles)
+	traj.append_waypoint(get_point.to_msg())
+	
+	result = traj.send_trajectory()
+	if result is None:
+            rospy.logerr('Trajectory FAILED to send')
+            return
+
+	if result.result:
+            rospy.loginfo('Motion controller successfully finished the trajectory!')
+	else:
+            rospy.logerr('Motion controller failed to complete the trajectory with error %s',
+                         result.errorId)
+
+	
 
 
 def glass_detection():
@@ -215,8 +250,7 @@ def glass_detection():
     time.sleep(2)
     
     cameras.stop_streaming(cam)
-    
-    
+    l.move_to_joint_positions(pos_gen)    
     
     x1, y1, x2, y2, conf = coord_from_best(extract_mean_coord(tab))
     
@@ -225,9 +259,9 @@ def glass_detection():
     li.set_light_state("head_green_light",False)
     
     if conf < 0.5:
-    	l.move_ton_neutral()
-    
-    recup_glass(x1, y1, x2, y2, l, traj)
+    	l.move_to_neutral()
+    else:
+    	recup_glass(x1, y1, x2, y2, l, traj)
     
  
     
@@ -237,3 +271,39 @@ if __name__ == '__main__':
 		glass_detection()
 	except rospy.ROSInterruptException:
 		pass
+'''		
+pre_point = MotionWaypoint(options = wpt_opts.to_msg(), limb = limb)
+	
+	endpoint_state = limb.tip_state('right_hand')
+	pose = endpoint_state.pose
+	
+	pose.position.x = 0.58 - (x1 * 0.2)
+	pose.position.y =  -0.5
+	pose.position.z =  -0.38
+	
+	pose.orientation.x = 0.57 - (x1 * 0.08)
+	pose.orientation.y = -0.49 - (x1 * 0.03)
+	pose.orientation.z = 0.40 + (x1 * 0.1)
+	pose.orientation.w = 0.53 - (x1 * 0.05)
+	
+	rospy.loginfo(pose)
+	
+	poseStamped = PoseStamped()
+	poseStamped.pose = pose
+	
+	joint_angles = limb.joint_ordered_angles()
+	pre_point.set_cartesian_pose(poseStamped, 'right_hand', joint_angles)
+	
+	traj.append_waypoint(pre_point.to_msg())
+	
+	result = traj.send_trajectory()
+	if result is None:
+            rospy.logerr('Trajectory FAILED to send')
+            return
+
+	if result.result:
+            rospy.loginfo('Motion controller successfully finished the trajectory!')
+	else:
+            rospy.logerr('Motion controller failed to complete the trajectory with error %s',
+                         result.errorId)
+'''           
