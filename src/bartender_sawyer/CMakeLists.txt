@@ -201,7 +201,7 @@ catkin_install_python(PROGRAMS
 )
 
 catkin_install_python(PROGRAMS
-   scripts/glass_detection.py
+   scripts/get_glass_with_detection.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
