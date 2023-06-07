@@ -60,15 +60,7 @@ def show_image_callback(img_data, xxx_todo_changeme):
     
 
 def main():
-    """Camera Display Example
 
-    Cognex Hand Camera Ranges
-        - exposure: [0.01-100]
-        - gain: [0-255]
-    Head Camera Ranges:
-        - exposure: [0-100], -1 for auto-exposure
-        - gain: [0-79], -1 for auto-gain
-    """
     rp = intera_interface.RobotParams()
     valid_cameras = rp.get_camera_names()
     if not valid_cameras:

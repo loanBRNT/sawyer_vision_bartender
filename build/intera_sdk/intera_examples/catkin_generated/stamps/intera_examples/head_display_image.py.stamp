@@ -50,7 +50,7 @@ Notes:
         help='Image display frequency for multiple and looped images.'
     )
     args = parser.parse_args()
-
+    print(args)
     rospy.init_node("head_display_example", anonymous=True)
 
     head_display = intera_interface.HeadDisplay()

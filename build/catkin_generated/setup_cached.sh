@@ -7,7 +7,4 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/loan/sawyer_vision_bartender/devel:$CMAKE_PREFIX_PATH"
 export PWD='/home/loan/sawyer_vision_bartender/build'
-export ROSLISP_PACKAGE_DIRECTORIES='/home/loan/sawyer_vision_bartender/devel/share/common-lisp'
-export ROS_PACKAGE_PATH="/home/loan/sawyer_vision_bartender/src:$ROS_PACKAGE_PATH"
