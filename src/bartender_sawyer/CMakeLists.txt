@@ -216,6 +216,11 @@ catkin_install_python(PROGRAMS
 )
 
 catkin_install_python(PROGRAMS
+   scripts/move.py
+   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+catkin_install_python(PROGRAMS
    scripts/pour_with_detection.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

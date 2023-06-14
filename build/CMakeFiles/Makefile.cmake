@@ -57,6 +57,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/hi.py"
   "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/initialisation.py"
   "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/lights.py"
+  "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/move.py"
   "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/pour.py"
   "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/pour_with_detection.py"
   "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/take_photo.py"

@@ -5,23 +5,43 @@ import intera_interface
 import time
 import argparse
 
+from intera_motion_interface import (
+    MotionTrajectory,
+    MotionWaypoint,
+    MotionWaypointOptions
+)
+
+from intera_motion_msgs.msg import TrajectoryOptions
+from geometry_msgs.msg import PoseStamped
+import PyKDL
+from tf_conversions import posemath
+
 ################ POSITIONS ###############
 
-pos_detect_glass = {'right_j0': -0.80207421875, 'right_j1': 1.252166015625, 'right_j2': -1.4084111328125, 'right_j3': 0.58323046875, 'right_j4': 2.0536455078125, 'right_j5': -2.509525390625, 'right_j6': -1.291484375}
+pos_pre_recup_glass = [[-1.6035390625, -0.828837890625, 0.1747294921875,  2.11088671875, 0.052681640625,  -1.1140712890625,  4.708591796875], [-1.2092255859375,-0.8233896484375, -0.0943388671875,  1.9935185546875, 0.2371923828125, -0.87115234375, 4.7135498046875],[-0.9337197265625, -0.634431640625,  -0.0898271484375, 1.8929345703125, 0.5247314453125, -1.2129697265625, 4.7133427734375]]
 
-pos_pre_recup_glass = [ {'right_j0': -0.532666015625, 'right_j1': 1.27151953125, 'right_j2': -1.439171875, 'right_j3': 0.9640185546875, 'right_j4': 1.8421640625, 'right_j5': -0.68358203125, 'right_j6': -0.6645400390625}, {'right_j0': -0.624029296875, 'right_j1': 1.2078125, 'right_j2': -1.577265625, 'right_j3': 0.831654296875, 'right_j4': 1.791888671875, 'right_j5': -0.6365478515625, 'right_j6': -0.6614287109375}, {'right_j0': -0.895431640625, 'right_j1': 1.2117236328125, 'right_j2': -1.7453271484375, 'right_j3': 0.28679296875, 'right_j4': 2.1689140625, 'right_j5': -0.942033203125, 'right_j6': -1.3567734375}]
+pos_recup_glass = [[-1.584224609375,-0.7739677734375,0.1607607421875, 1.8298876953125, 0.0931064453125, -0.756916015625, 4.71313671875],[-1.4670693359375, -0.70964453125, 0.2772626953125, 1.8358076171875, 0.314283203125, -0.9724384765625, 4.567939453125],[-0.987849609375, -0.49490625,  -0.171841796875, 1.505234375, 0.5272236328125, -0.837455078125, 4.71313671875]]
 
-pos_recup_glass = [{'right_j0': -1.0360048828125, 'right_j1': 1.1023505859375, 'right_j2': -1.647775390625, 'right_j3': 0.676875, 'right_j4': 1.33, 'right_j5': -0.6297568359375, 'right_j6': -0.534462890625},{'right_j0': -1.014908203125, 'right_j1': 1.0770478515625, 'right_j2': -1.7496494140625, 'right_j3': 0.5284404296875, 'right_j4': 1.60949609375, 'right_j5': -0.4598740234375, 'right_j6': -0.775044921875},{'right_j0': -1.0514345703125, 'right_j1': 1.0543115234375, 'right_j2': -1.7487919921875, 'right_j3': 0.207107421875, 'right_j4': 1.9799365234375, 'right_j5': -0.4508369140625, 'right_j6': -1.3588388671875}]
+pos_post_recup_glass = [[-1.5826806640625, -0.986171875,0.1585771484375,  1.4592783203125, 0.1536455078125, -0.5032294921875, 4.561548828125],[-1.500373046875, -0.9680859375,  0.2665068359375, 1.360462890625, 0.3930146484375, -0.46851171875, 4.4739609375],[-0.997111328125, -0.4422041015625, -0.710783203125, 0.7013291015625, 1.0053291015625,-0.1591142578125, 4.493740234375]]
 
-pos_post_recup_glass = [{'right_j0': -0.9970087890625, 'right_j1': 0.794609375, 'right_j2': -1.80078515625, 'right_j3': 1.1840732421875, 'right_j4': 1.5194033203125, 'right_j5': -0.7608154296875, 'right_j6': -0.534255859375},{'right_j0': -0.910771484375, 'right_j1': 0.8328583984375, 'right_j2': -1.834767578125, 'right_j3': 0.9932275390625, 'right_j4': 1.782619140625, 'right_j5': -0.7408935546875, 'right_j6': -0.7756650390625},{'right_j0': -1.0290068359375, 'right_j1': 0.61950390625, 'right_j2': -1.74821484375, 'right_j3': 0.3257744140625, 'right_j4': 2.148541015625, 'right_j5': -0.92559765625, 'right_j6': -1.659173828125}]
+pos_pre_bar = [-0.3886259765625, -1.049486328125, 0.494654296875, 1.63075,  0.289830078125,  -0.6344814453125,4.2997275390625]
 
-pos_pre_put_glass = [{'right_j0': 0.305041015625, 'right_j1': 0.7668427734375, 'right_j2': -1.3863125, 'right_j3': 0.9546611328125, 'right_j4': 0.92139453125, 'right_j5': -0.9726455078125, 'right_j6': -0.5043798828125},{'right_j0': 0.3453818359375, 'right_j1': 0.9683125, 'right_j2': -2.0013759765625, 'right_j3': 0.81813671875, 'right_j4': 1.3921142578125, 'right_j5': -0.627083984375, 'right_j6': -0.389177734375},{'right_j0': 0.387470703125, 'right_j1': 0.8612421875, 'right_j2': -1.4693369140625, 'right_j3': 0.057345703125, 'right_j4': 1.957291015625, 'right_j5': -0.8586162109375, 'right_j6': -1.7408095703125}]
+pos_bar = [0.329591796875, -0.4064501953125, -0.088365234375, 1.908662109375, 0.3708466796875, -1.2654140625, -1.3499560546875]
 
-pos_put_glass = [{'right_j0': 0.2506796875, 'right_j1': 0.863505859375, 'right_j2': -1.3675439453125, 'right_j3': 0.7778564453125, 'right_j4': 0.798353515625, 'right_j5': -0.8021044921875, 'right_j6': -0.5045869140625},{'right_j0': 0.2697568359375, 'right_j1': 0.911126953125, 'right_j2': -2.0144599609375, 'right_j3': 0.5911435546875, 'right_j4': 0.9641943359375, 'right_j5': -0.46542578125, 'right_j6': -0.217849609375},{'right_j0': 0.0537646484375, 'right_j1': 0.978390625, 'right_j2': -1.7764404296875, 'right_j3': -0.5532861328125, 'right_j4': 2.7120517578125, 'right_j5': -0.6055224609375, 'right_j6': -2.3341572265625}]
+pos_pre_put_glass = [[0.305041015625, 0.7668427734375, -1.3863125, 0.9546611328125, 0.92139453125, -0.9726455078125, -0.5043798828125],[0.3453818359375, 0.9683125, -2.0013759765625,  0.81813671875, 1.3921142578125,-0.627083984375, -0.389177734375],[ 0.524583984375, 0.830498046875, -0.901619140625, 0.2698203125, 1.2100576171875, -0.9083359375, -1.3435654296875]]
 
-pos_post_put_glass = [{'right_j0': 0.464845703125, 'right_j1': 0.8338876953125, 'right_j2': -1.0946845703125, 'right_j3': 1.028482421875, 'right_j4': 0.739169921875, 'right_j5': -0.9272373046875, 'right_j6': -0.501888671875},{'right_j0': 0.7132861328125, 'right_j1': 0.90948046875, 'right_j2': -1.47756640625, 'right_j3': 0.9297744140625, 'right_j4': 0.7937958984375, 'right_j5': -0.53548046875, 'right_j6': -0.1802529296875},{'right_j0': 0.0200361328125, 'right_j1': 1.2547392578125, 'right_j2': -1.7145029296875, 'right_j3': -0.967587890625, 'right_j4': 2.2528876953125, 'right_j5': -1.5471689453125, 'right_j6': -2.3343642578125}]
+pos_put_glass = [[ 0.2506796875,0.863505859375, -1.3675439453125, 0.7778564453125, 0.798353515625,-0.8021044921875,-0.5045869140625],[0.2697568359375, 0.911126953125,-2.0144599609375,  0.5911435546875, 0.9641943359375, -0.46542578125, -0.217849609375],[0.5198369140625, 0.842326171875, -0.901908203125, 0.2603271484375, 1.0972802734375, -0.60531640625, -1.3435654296875]]
 
-pos_end = {'right_j0': 0.9390166015625, 'right_j1': 0.5649169921875, 'right_j2': -1.550005859375, 'right_j3': 1.367509765625, 'right_j4': 0.678345703125, 'right_j5': -0.4288623046875, 'right_j6': -0.1827451171875}
+pos_post_put_glass = [[ 0.464845703125,  0.8338876953125, -1.0946845703125, 1.028482421875, 0.739169921875, -0.9272373046875, -0.501888671875],[0.751046875, 0.8965205078125,-1.447544921875, 0.9766787109375, 0.8419921875, -0.55315625,-0.1881396484375],[1.15976171875, 0.81074609375, -0.8974140625, 0.9020009765625, 1.5620869140625, -0.693859375, -0.9985849609375]]
+
+pos_end = [0.9390166015625, 0.5649169921875, -1.550005859375, 1.367509765625, 0.678345703125, -0.4288623046875, -0.1827451171875]
+
+wpt_opts = MotionWaypointOptions(max_linear_speed=0.6,
+                                         max_linear_accel=0.6,
+                                         max_rotational_speed=1.57,
+                                         max_rotational_accel=1.57,
+                                         max_joint_speed_ratio=1.0,
+                                         corner_distance=0.1)
 
 ############################################
 
@@ -43,36 +63,54 @@ def get_glass():
 	grip = intera_interface.Gripper()
 	grip.open()
 	
-	print("start")
-	limb.set_joint_position_speed(0.3)
-	
-	limb.move_to_joint_positions(pos_detect_glass)
-	time.sleep(1)
-	
-	limb.set_joint_position_speed(0.2)
-	
-	limb.move_to_joint_positions(pos_pre_recup_glass[args.pickUp-1])
-	time.sleep(1)
-	
-	limb.move_to_joint_positions(pos_recup_glass[args.pickUp-1])
+	traj_options = TrajectoryOptions()
+	traj_options.interpolation_type = TrajectoryOptions.CARTESIAN
+	traj = MotionTrajectory(trajectory_options = traj_options, limb = limb)
+    
+	joint_names = limb.joint_names()
+      
+	waypoint = MotionWaypoint(options = wpt_opts.to_msg(), limb = limb)
+	poseStamped = PoseStamped()  
 
-	time.sleep(2)
-	limb.move_to_joint_positions(pos_post_recup_glass[args.pickUp-1])
-	limb.set_joint_position_speed(0.1)
-	time.sleep(1)
-	limb.move_to_joint_positions(pos_end)
-	time.sleep(1)
-	limb.move_to_joint_positions(pos_pre_put_glass[args.dropOff-1])
-	time.sleep(1)
-	limb.move_to_joint_positions(pos_put_glass[args.dropOff-1])
+	waypoint.set_joint_angles(pos_pre_recup_glass[args.pickUp-1], 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	waypoint.set_joint_angles(pos_recup_glass[args.pickUp-1], 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
 
-	time.sleep(2)
-	limb.move_to_joint_positions(pos_post_put_glass[args.dropOff-1])
-	limb.set_joint_position_speed(0.3)
-	time.sleep(1)
-	limb.move_to_joint_positions(pos_end)
-	time.sleep(1)
-	limb.move_to_neutral()
+	waypoint.set_joint_angles(pos_post_recup_glass[args.pickUp-1], 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	
+	waypoint.set_joint_angles(pos_pre_bar, 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	waypoint.set_joint_angles(pos_bar, 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	waypoint.set_joint_angles(pos_pre_put_glass[args.dropOff-1], 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	waypoint.set_joint_angles(pos_put_glass[args.dropOff-1], 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	waypoint.set_joint_angles(pos_post_put_glass[args.dropOff-1], 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	waypoint.set_joint_angles(pos_end, 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	result = traj.send_trajectory()
+	if result is None:
+            rospy.logerr('Trajectory FAILED to send')
+            return
+
+	if result.result:
+            rospy.loginfo('Motion controller successfully finished the trajectory!')
+	else:
+            rospy.logerr('Motion controller failed to complete the trajectory with error %s',
+                         result.errorId)
+
 	
 	
 if __name__ == '__main__':

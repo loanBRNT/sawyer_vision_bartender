@@ -20,8 +20,10 @@ from geometry_msgs.msg import PoseStamped
 import PyKDL
 from tf_conversions import posemath
 
-#import pandas, tqdm, ultralytics
 from cv_bridge import CvBridge, CvBridgeError
+
+import logging
+logging.basicConfig(filename='/log/ros.log',level=logging.DEBUG)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-do','--dropOff', type=int, help='Position numbers (between 1 and 3) where the glass is to be droped off')
@@ -64,10 +66,10 @@ class DetectionYolov5:
 		self.model = self.load_model(model_path)
 		self.classes = self.model.names
 		self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
-		rospy.loginfo("Using device '{0}'".format(self.device))
+		logging.info("Using device '{0}'".format(self.device))
 		
 	def load_model(self,model_path):
-		return torch.hub.load('ultralytics/yolov5','custom', path=model_path, force_reload=True)
+		return torch.hub.load('ultralytics/yolov5','custom', path=model_path, trust_repo=True)
 		
 	def score_frame(self,frame):
 		self.model.to(self.device)
@@ -121,13 +123,13 @@ def show_image_callback(img_data):
         cv_image = bridge.imgmsg_to_cv2(img_data, "bgr8")
         tab.append(detection(cv_image))
     except CvBridgeError as err:
-        rospy.logerr(err)
+        logging.critical(err)
         return
         
 def init_detection():
     global detection
     
-    detection = DetectionYolov5('/home/loan/sawyer_vision_bartender/model/best_small.pt')
+    detection = DetectionYolov5('/model/best_small.pt')
 
 def extract_mean_coord(tab):
     tab_mean=[]
@@ -222,13 +224,13 @@ def recup_glass(x1, y1, x2, y2, limb):
 	
 	result = traj.send_trajectory()
 	if result is None:
-            rospy.logerr('Trajectory FAILED to send')
+            logging.error('Trajectory FAILED to send')
             return
 
 	if result.result:
-            rospy.loginfo('Motion controller successfully finished the trajectory!')
+            logging.info('Motion controller successfully finished the trajectory!')
 	else:
-            rospy.logerr('Motion controller failed to complete the trajectory with error %s',
+            logging.critical('Motion controller failed to complete the trajectory with error %s',
                          result.errorId)
 
 def deposit_glass(n,limb):
@@ -263,13 +265,13 @@ def deposit_glass(n,limb):
     
     result = traj.send_trajectory()
     if result is None:
-            rospy.logerr('Trajectory FAILED to send')
+            logging.error('Trajectory FAILED to send')
             return
 
     if result.result:
-            rospy.loginfo('Motion controller successfully finished the trajectory!')
+            logging.info('Motion controller successfully finished the trajectory!')
     else:
-            rospy.logerr('Motion controller failed to complete the trajectory with error %s',
+            logging.critical('Motion controller failed to complete the trajectory with error %s',
                          result.errorId)
     
     
@@ -283,7 +285,6 @@ def glass_detection():
 
     rp = intera_interface.RobotParams()
 
-    print("Initializing node... ")
     rospy.init_node('glass_detection')
     
     l = intera_interface.Limb('right')
@@ -331,5 +332,6 @@ def glass_detection():
 if __name__ == '__main__':
 	try:
 		glass_detection()
-	except rospy.ROSInterruptException:
+	except rospy.ROSInterruptException as e:
+		logging.critical(e)
 		pass
