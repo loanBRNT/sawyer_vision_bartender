@@ -196,7 +196,7 @@ catkin_install_python(PROGRAMS
 )
 
 catkin_install_python(PROGRAMS
-   scripts/camera.py
+   scripts/camera_calibration.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

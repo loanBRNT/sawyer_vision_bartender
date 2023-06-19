@@ -36,11 +36,15 @@ pos_post_put_glass = [[ 0.464845703125,  0.8338876953125, -1.0946845703125, 1.02
 
 pos_end = [0.9390166015625, 0.5649169921875, -1.550005859375, 1.367509765625, 0.678345703125, -0.4288623046875, -0.1827451171875]
 
+pos_inter = [0.0444833984375, -0.450109375, 0.219087890625, 2.1285087890625, 0.058478515625, -1.8043427734375, 3.3572685546875]
+
+pos_neutre= [0.0018916015625, -1.178173828125, -0.0025615234375,2.1771728515625,  0.0064345703125,0.5698369140625, 3.31188671875]
+
 wpt_opts = MotionWaypointOptions(max_linear_speed=0.6,
                                          max_linear_accel=0.6,
                                          max_rotational_speed=1.57,
                                          max_rotational_accel=1.57,
-                                         max_joint_speed_ratio=1.0,
+                                         max_joint_speed_ratio=0.9,
                                          corner_distance=0.1)
 
 ############################################
@@ -98,6 +102,12 @@ def get_glass():
 	traj.append_waypoint(waypoint.to_msg())
 	
 	waypoint.set_joint_angles(pos_end, 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	waypoint.set_joint_angles(pos_inter, 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	waypoint.set_joint_angles(pos_neutre, 'right_hand', joint_names)
 	traj.append_waypoint(waypoint.to_msg())
 	
 	result = traj.send_trajectory()

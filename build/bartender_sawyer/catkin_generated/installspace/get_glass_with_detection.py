@@ -23,7 +23,7 @@ from tf_conversions import posemath
 from cv_bridge import CvBridge, CvBridgeError
 
 import logging
-logging.basicConfig(filename='/log/ros.log',level=logging.DEBUG)
+logging.basicConfig(filename='ros.log',level=logging.DEBUG)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-do','--dropOff', type=int, help='Position numbers (between 1 and 3) where the glass is to be droped off')
@@ -129,7 +129,7 @@ def show_image_callback(img_data):
 def init_detection():
     global detection
     
-    detection = DetectionYolov5('/model/best_small.pt')
+    detection = DetectionYolov5('./model/best_small.pt')
 
 def extract_mean_coord(tab):
     tab_mean=[]
@@ -174,8 +174,14 @@ def recup_glass(x1, y1, x2, y2, limb):
 	endpoint_state = limb.tip_state('right_hand')
 	pose = endpoint_state.pose
 	
-	offset = (0.5 - (x1+x2)/2)/2.128
+	offset = (0.5 - (x1+x2)/2)/2.4
 	deep = (0.2/(y2-y1))/2.128
+	
+	print("Taille : ", y2-y1)
+	print("Position : ", (x2+x1)/2)
+	print("=================")
+	print("Décalage : ", offset)
+	print("Profondeur : ", deep)
 	
 	####### CONFIGURE PRE
 	rot = PyKDL.Rotation.RPY(0, 0, 0)
@@ -319,15 +325,19 @@ def glass_detection():
     
     x1, y1, x2, y2, conf = coord_from_best(extract_mean_coord(tab))
     
-    print(str(x1) +","+ str(y1)+","+str(x2)+","+str(y2)+","+str(conf))
+    #print(str(x1) +","+ str(y1)+","+str(x2)+","+str(y2)+","+str(conf))
+    print("Confiance :", str(conf))
     
     li.set_light_state("head_green_light",False)
     
     if conf < 0.5:
     	l.move_to_neutral()
     else:
-    	recup_glass(x1, y1, x2, y2, l)
-    	deposit_glass(args.dropOff-1,l)
+    	print("ok")
+    	#recup_glass(x1, y1, x2, y2, l)
+    	#deposit_glass(args.dropOff-1,l)
+    
+    exit(0)
     
 if __name__ == '__main__':
 	try:

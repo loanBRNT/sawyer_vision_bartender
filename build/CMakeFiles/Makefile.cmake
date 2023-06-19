@@ -48,7 +48,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/loan/sawyer_vision_bartender/src/CMakeLists.txt"
   "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/CMakeLists.txt"
   "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/package.xml"
-  "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/camera.py"
+  "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/camera_calibration.py"
   "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/display.py"
   "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/get_glass.py"
   "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/get_glass_with_detection.py"

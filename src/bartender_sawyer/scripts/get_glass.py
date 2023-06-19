@@ -44,7 +44,7 @@ wpt_opts = MotionWaypointOptions(max_linear_speed=0.6,
                                          max_linear_accel=0.6,
                                          max_rotational_speed=1.57,
                                          max_rotational_accel=1.57,
-                                         max_joint_speed_ratio=1.0,
+                                         max_joint_speed_ratio=0.9,
                                          corner_distance=0.1)
 
 ############################################
