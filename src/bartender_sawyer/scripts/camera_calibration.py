@@ -8,7 +8,7 @@ import numpy as np
 import os
 import glob
 
-CHECKERBOARD = (6, 6)
+CHECKERBOARD = (6, 5)
 
 criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 

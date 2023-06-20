@@ -28,6 +28,12 @@ logging.basicConfig(filename='ros.log',level=logging.DEBUG)
 parser = argparse.ArgumentParser()
 parser.add_argument('-do','--dropOff', type=int, help='Position numbers (between 1 and 3) where the glass is to be droped off')
 
+################ CAMERA ##################
+
+focale_x = 1188.81628* ( 640 / 752 )
+c_x = 130.234769 * ( 640 / 752 )
+height_cup = 12 #cm
+
 ################ POSITIONS ###############
 
 pos_detect_glass = {'right_j0': -0.956154296875, 'right_j1': -0.7500234375, 'right_j2': -0.0840078125, 'right_j3': 2.1074306640625, 'right_j4': 0.52949609375, 'right_j5': -2.9210869140625, 'right_j6': -1.271640625}
@@ -121,7 +127,7 @@ def show_image_callback(img_data):
     bridge = CvBridge()
     try:
         cv_image = bridge.imgmsg_to_cv2(img_data, "bgr8")
-        tab.append(detection(cv_image))
+        tab.append(detection(cv_image)
     except CvBridgeError as err:
         logging.critical(err)
         return
@@ -174,14 +180,17 @@ def recup_glass(x1, y1, x2, y2, limb):
 	endpoint_state = limb.tip_state('right_hand')
 	pose = endpoint_state.pose
 	
-	offset = (0.5 - (x1+x2)/2)/2.4
-	deep = (0.2/(y2-y1))/2.128
+	height = (y2-y1) * 640
+	pos_x = 640 * (x1+x2) / 2
+		
+	d = focale_x * height_cup / height
+	deep = d * 0.006
 	
-	print("Taille : ", y2-y1)
-	print("Position : ", (x2+x1)/2)
-	print("=================")
-	print("Décalage : ", offset)
-	print("Profondeur : ", deep)
+	o = (320 - pos_x ) * d / focale_x
+	if o > 0 :
+		offset = o * 0.01875
+	else:
+		offset = o * 0.015
 	
 	####### CONFIGURE PRE
 	rot = PyKDL.Rotation.RPY(0, 0, 0)
@@ -325,17 +334,13 @@ def glass_detection():
     
     x1, y1, x2, y2, conf = coord_from_best(extract_mean_coord(tab))
     
-    #print(str(x1) +","+ str(y1)+","+str(x2)+","+str(y2)+","+str(conf))
-    print("Confiance :", str(conf))
-    
     li.set_light_state("head_green_light",False)
     
     if conf < 0.5:
     	l.move_to_neutral()
     else:
-    	print("ok")
-    	#recup_glass(x1, y1, x2, y2, l)
-    	#deposit_glass(args.dropOff-1,l)
+    	recup_glass(x1, y1, x2, y2, l)
+    	deposit_glass(args.dropOff-1,l)
     
     exit(0)
     
