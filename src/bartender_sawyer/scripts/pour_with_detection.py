@@ -25,9 +25,13 @@ from cv_bridge import CvBridge, CvBridgeError
 
 ################ POSITION ###############
 
-pos_detect_bottle = {'right_j0': 1.5445498046875, 'right_j1': -0.066890625, 'right_j2': -0.0502783203125, 'right_j3': 1.4486123046875, 'right_j4': 0.0872958984375, 'right_j5': -2.978140625, 'right_j6': 0.2274365234375}
+parking_pose = {'position': [0.450445140130699, 0.16049881120048198, 0.2141410747437623], 'orientation': [0.7047397651848174, 0.7094590289687702, 0.0001670304255709002, 0.0031179613173078257]}
 
-pos_gen = {'right_j0': 1.61329296875, 'right_j1': 0.1555595703125, 'right_j2': -0.5116181640625, 'right_j3': 1.1607470703125, 'right_j4': 0.104712890625, 'right_j5': -1.26212109375, 'right_j6': -0.877208984375}
+parking_angles = [0.0018916015625, -1.178173828125, 0.0016513671875, 2.1770283203125, -0.0010400390625, 0.5632392578125, 3.3139521484375]
+
+pos_detect_bottle = {'right_j0': 1.2870205078125, 'right_j1': 0.029998046875, 'right_j2': 0.0209970703125, 'right_j3': 1.4006435546875, 'right_j4': -0.2148701171875, 'right_j5': -2.978966796875, 'right_j6': 0.087791015625}
+
+pos_gen = {'right_j0': 1.2172041015625, 'right_j1': -0.0459296875, 'right_j2': 0.004701171875, 'right_j3': 1.3542724609375, 'right_j4': -0.2974365234375, 'right_j5': -1.3793916015625, 'right_j6': -1.346857421875}
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-d','--drink', type=str, help='Drink to pour')
@@ -39,8 +43,22 @@ wpt_opts = MotionWaypointOptions(max_linear_speed=0.6,
                                          max_rotational_accel=1.57,
                                          max_joint_speed_ratio=1.0,
                                          corner_distance=0.1)
-                                         
-coefs_boissons={'Coca':1.25,'Orange':1.15,'Water':1.428}
+
+pos_interm = [0.9757421875, -0.199314453125, -0.547630859375, 1.1335419921875,  2.9047998046875, 0.96819140625, 2.3736865234375]
+
+pos_go_to_glass = [0.64188671875, -0.369873046875,  -0.3039892578125,  1.710625,  2.9776171875,  1.3243916015625, 1.912365234375]
+
+pos_pre_pour = [[0.1922861328125, 0.035548828125, -0.30747265625, 1.12749609375, 2.97741015625,  1.11075390625, 2.034103515625],[0.16102734375, 0.0102783203125, 0.4033466796875, 1.3783203125, 2.3444384765625, 0.9012734375, 2.659044921875],[0.8948623046875, 0.236021484375, -0.26154296875, 0.9559609375, 2.9749443359375, 1.057625, 1.96664453125]]
+
+pos_pour = [[-0.033791015625, -0.0165419921875, 0.156546875, 1.2946455078125, 2.771919921875, 0.89508984375, 1.3623994140625],[0.156486328125, -0.040796875, 0.33340625, 1.421677734375,  2.2584384765625, 0.9436083984375, 3.4513115234375],[0.843587890625, 0.4864814453125, -0.4678994140625, 0.732396484375, 2.9770107421875, 1.0247802734375, 2.6678759765625]]
+
+pos_pouring= [[0.1152265625, 0.074287109375, -0.04066796875, 1.0553896484375, 2.90252734375, 0.586517578125, 0.0468515625],[0.156486328125, -0.040796875, 0.33340625, 1.421677734375,  2.2584384765625, 0.9436083984375, 3.4513115234375],[0.84534375, 0.444861328125, -0.3554404296875, 0.7752666015625, 2.9757705078125, 1.02932421875, 3.857361328125]]
+
+################ CAMERA ##################
+
+focale_x = 1188.81628* ( 640 / 752 )
+c_x = 130.234769 * ( 640 / 752 )
+heights = {'Coca':23,'Orange':24,'Water':22} #cm
 
 ################ CLASS ###############
 
@@ -115,7 +133,7 @@ def show_image_callback(img_data):
 def init_detection():
     global detection
     
-    detection = DetectionYolov5('/home/loan/sawyer_vision_bartender/model/best_small_complet.pt')
+    detection = DetectionYolov5('./model/best_small_complet.pt')
 
 def extract_mean_coord(tab):
     tab_mean=[]
@@ -160,7 +178,7 @@ def coord_from_best(tab_mean,tab_labels,boisson):
     return float(tab_mean[indice][0]), float(tab_mean[indice][1]), float(tab_mean[indice][2]), float(tab_mean[indice][3]), float(tab_mean[indice][4])
 
 
-def recup_bottle(x1, y1, x2, y2, limb, coef_boisson):
+def recup_bottle(x1, y1, x2, y2, limb, h, grip):
 	traj_options = TrajectoryOptions()
 	traj_options.interpolation_type = TrajectoryOptions.CARTESIAN
 	traj = MotionTrajectory(trajectory_options = traj_options, limb = limb)
@@ -171,16 +189,21 @@ def recup_bottle(x1, y1, x2, y2, limb, coef_boisson):
 	endpoint_state = limb.tip_state('right_hand')
 	pose = endpoint_state.pose
 	
-	height = (y2-y1)
-	deep = (0.15/height)/coef_boisson
+	height = (y2-y1) * 640
+	pos_x = 640 * (x1+x2) / 2
+		
+	d = (focale_x * h / height)  
+	deep = (d - 30) / 100
 	
-	offset = ((x1+x2)/2) - 0.5
-	
-	offset = offset * 1/height / coef_boisson / 2
+	o = (pos_x-320 ) * d / focale_x
+	offset = o * 0.017
 
-	
+	print("h = " + str(height))
+	print("x = " + str(pos_x))
+	print("##################")
+	print("offset = " + str(o))
+	print("deep = " + str(d))
 	print("offset = " + str(offset))
-	print("hauteur = " + str(y2-y1))
 	print("deep = " + str(deep))
 	
 	####### CONFIGURE PRE
@@ -221,22 +244,141 @@ def recup_bottle(x1, y1, x2, y2, limb, coef_boisson):
 	else:
             rospy.logerr('Motion controller failed to complete the trajectory with error %s',
                          result.errorId)
+	grip.close()
 
+def pouring(limb,grip,n):
+	traj_options = TrajectoryOptions()
+	traj_options.interpolation_type = TrajectoryOptions.CARTESIAN
+	traj = MotionTrajectory(trajectory_options = traj_options, limb = limb)
+    
+	waypoint = MotionWaypoint(options = wpt_opts.to_msg(), limb = limb)
+	sauv_waypoint = MotionWaypoint(options = wpt_opts.to_msg(), limb = limb)
+	poseStamped = PoseStamped()
+	
+	joint_names = limb.joint_names()
+	
+	endpoint_state = limb.tip_state('right_hand')
+	pose = endpoint_state.pose
+	pose_sauv = pose
+	
+	rot = PyKDL.Rotation.RPY(0,0,0)
+	trans = PyKDL.Vector(0,0,0.3)
+	
+	f2 = PyKDL.Frame(rot, trans)
 
+	pose = posemath.toMsg(f2 * posemath.fromMsg(pose))
+
+	poseStamped.pose = pose
+	joint_angles = limb.joint_ordered_angles()
+
+	sauv_waypoint.set_cartesian_pose(poseStamped, 'right_hand', joint_angles)
+	traj.append_waypoint(sauv_waypoint.to_msg())
+	
+	waypoint.set_joint_angles(pos_interm, 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	waypoint.set_joint_angles(pos_go_to_glass, 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	waypoint.set_joint_angles(pos_pre_pour[n-1], 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	waypoint.set_joint_angles(pos_pour[n-1], 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	waypoint.set_joint_angles(pos_pouring[n-1], 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+
+	result = traj.send_trajectory()
+	if result is None:
+            rospy.logerr('Trajectory FAILED to send')
+            return
+
+	if result.result:
+            rospy.loginfo('Motion controller successfully finished the trajectory!')
+	else:
+            rospy.logerr('Motion controller failed to complete the trajectory with error %s',
+                         result.errorId)
+            return
+	#'''
+	time.sleep(1)
+	
+	traj = MotionTrajectory(trajectory_options = traj_options, limb = limb)
+	
+	waypoint.set_joint_angles(pos_pour[n-1], 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	waypoint.set_joint_angles(pos_pre_pour[n-1], 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	waypoint.set_joint_angles(pos_go_to_glass, 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	waypoint.set_joint_angles(pos_interm, 'right_hand', joint_names)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	traj.append_waypoint(sauv_waypoint.to_msg())
+	
+	poseStamped_sauv = PoseStamped()
+	poseStamped_sauv.pose = pose_sauv
+	waypoint.set_cartesian_pose(poseStamped_sauv, 'right_hand', joint_angles)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	result = traj.send_trajectory()
+	if result is None:
+            rospy.logerr('Trajectory FAILED to send')
+            return
+
+	if result.result:
+            rospy.loginfo('Motion controller successfully finished the trajectory!')
+	else:
+            rospy.logerr('Motion controller failed to complete the trajectory with error %s',
+                         result.errorId)
+            return
+	grip.open()
+	
+	traj = MotionTrajectory(trajectory_options = traj_options, limb = limb)
+	
+	traj.append_waypoint(sauv_waypoint.to_msg())
+
+	pose.position.x = parking_pose['position'][0]
+	pose.position.y = parking_pose['position'][1]
+	pose.position.z = parking_pose['position'][2]
+	pose.orientation.x = parking_pose['orientation'][0]
+	pose.orientation.y = parking_pose['orientation'][1]
+	pose.orientation.z = parking_pose['orientation'][2]
+	pose.orientation.w = parking_pose['orientation'][3]
+	
+	poseStamped.pose = pose
+	waypoint.set_cartesian_pose(poseStamped, 'right_hand', parking_angles)
+	traj.append_waypoint(waypoint.to_msg())
+	
+	result = traj.send_trajectory()
+	if result is None:
+            rospy.logerr('Trajectory FAILED to send')
+            return
+
+	if result.result:
+            rospy.loginfo('Motion controller successfully finished the trajectory!')
+	else:
+            rospy.logerr('Motion controller failed to complete the trajectory with error %s',
+                         result.errorId)
+            return
 
 def pour_glass():
     args = parser.parse_args()
     if not args.dropOff or args.dropOff < 1 or args.dropOff > 3:
     	exit(1)
-    if not args.drink in coefs_boissons:
+    if not args.drink in heights:
     	exit(2)
     init_thread = threading.Thread(target=init_detection)
     init_thread.start()
+    
+    rospy.init_node('pour_with_detection')
 
     rp = intera_interface.RobotParams()
-
-    print("Initializing node... ")
-    rospy.init_node('pour_with_detection')
+    grip = intera_interface.Gripper()
+    grip.open()
     
     l = intera_interface.Limb('right')
     li = intera_interface.Lights()
@@ -281,9 +423,9 @@ def pour_glass():
     if conf < 0.5:
     	l.move_to_neutral()
     else:
-    	recup_bottle(x1, y1, x2, y2, l, coefs_boissons[args.drink])
+    	recup_bottle(x1, y1, x2, y2, l, heights[args.drink],grip)
+    	pouring(l,grip,args.dropOff)
 
-	
 	
 
 if __name__ == '__main__':

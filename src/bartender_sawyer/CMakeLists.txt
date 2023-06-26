@@ -171,6 +171,11 @@ catkin_install_python(PROGRAMS
 )
 
 catkin_install_python(PROGRAMS
+   scripts/give_order.py
+   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+catkin_install_python(PROGRAMS
    scripts/get_pos.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
