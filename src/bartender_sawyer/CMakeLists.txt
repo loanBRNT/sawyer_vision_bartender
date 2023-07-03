@@ -161,42 +161,7 @@ include_directories(
 # )
 
 catkin_install_python(PROGRAMS
-   scripts/hi.py
-   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-
-catkin_install_python(PROGRAMS
-   scripts/pour.py
-   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-
-catkin_install_python(PROGRAMS
-   scripts/give_order.py
-   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-
-catkin_install_python(PROGRAMS
    scripts/get_pos.py
-   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-
-catkin_install_python(PROGRAMS
-   scripts/gripper_actions.py
-   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-
-catkin_install_python(PROGRAMS
-   scripts/get_glass.py
-   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-
-catkin_install_python(PROGRAMS
-   scripts/display.py
-   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-
-catkin_install_python(PROGRAMS
-   scripts/lights.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
@@ -217,11 +182,6 @@ catkin_install_python(PROGRAMS
 
 catkin_install_python(PROGRAMS
    scripts/take_photo.py
-   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-
-catkin_install_python(PROGRAMS
-   scripts/move.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

@@ -1,8 +1,0 @@
-prefix=/home/loan/sawyer_vision_bartender/install
-
-Name: bartender_sawyer
-Description: Description of bartender_sawyer
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
