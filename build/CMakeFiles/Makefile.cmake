@@ -53,6 +53,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/get_glass.py"
   "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/get_glass_with_detection.py"
   "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/get_pos.py"
+  "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/give_order.py"
   "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/gripper_actions.py"
   "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/hi.py"
   "/home/loan/sawyer_vision_bartender/src/bartender_sawyer/scripts/initialisation.py"

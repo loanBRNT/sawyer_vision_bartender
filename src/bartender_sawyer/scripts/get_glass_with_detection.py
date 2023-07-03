@@ -60,6 +60,13 @@ wpt_opts = MotionWaypointOptions(max_linear_speed=0.6,
                                          max_rotational_accel=1.57,
                                          max_joint_speed_ratio=1.0,
                                          corner_distance=0.1)
+                                         
+wpt_accurate_opts = MotionWaypointOptions(max_linear_speed=0.6,
+                                         max_linear_accel=0.6,
+                                         max_rotational_speed=1.57,
+                                         max_rotational_accel=1.57,
+                                         max_joint_speed_ratio=0.3,
+                                         corner_distance=0.05)
 
 ################ CLASS ###############
 
@@ -173,8 +180,8 @@ def recup_glass(x1, y1, x2, y2, limb):
 	traj = MotionTrajectory(trajectory_options = traj_options, limb = limb)
     
 	pre_point = MotionWaypoint(options = wpt_opts.to_msg(), limb = limb)
-	get_point = MotionWaypoint(options = wpt_opts.to_msg(), limb = limb)
-	got_point = MotionWaypoint(options = wpt_opts.to_msg(), limb = limb)
+	get_point = MotionWaypoint(options = wpt_accurate_opts.to_msg(), limb = limb)
+	got_point = MotionWaypoint(options = wpt_accurate_opts.to_msg(), limb = limb)
 	poseStamped = PoseStamped()
 	
 	endpoint_state = limb.tip_state('right_hand')
