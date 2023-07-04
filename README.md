@@ -11,7 +11,7 @@ This repository is a part of my intenrship at the Human Centered Robotic Laborat
 
 **V1.5** | 10/06 | : Fixed Position, Bottle already opened --> [video](https://youtu.be/lT4WaLM3AWw)
 
-**V2.0** | 03/07 | : Detection, Bottle already opened --> [video](https://youtu.be/lT4WaLM3AWw)
+**V2.0** | 03/07 | : Detection, Bottle already opened --> [video](https://youtu.be/Euf1ZaoABLU)
 
 ## How to use this repository
 
