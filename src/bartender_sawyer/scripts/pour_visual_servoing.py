@@ -113,69 +113,48 @@ class DetectionYolov5:
 
 ################ FUNCTIONS ###############
 
-detection = None
-tab = []
+cv_image = None
+sem = False
 
 def show_image_callback(img_data):
     """The callback function to show image by using CvBridge and cv
     """
-    global detection
-    global tab
-
-    bridge = CvBridge()
-    try:
-        cv_image = bridge.imgmsg_to_cv2(img_data, "bgr8") 
-        tab.append(detection(cv_image))
-    except CvBridgeError as err:
-        rospy.logerr(err)
-        return
+    global cv_image
+    global sem
+    
+    if sem:
+    	bridge = CvBridge()
+    	try:
+		      cv_image = bridge.imgmsg_to_cv2(img_data, "bgr8")
+		      sem = False
+    	except CvBridgeError as err:
+		      rospy.logerr(err)
+		      return
         
 def init_detection():
     global detection
     
     detection = DetectionYolov5('./model/best_small_complet.pt')
-
-def extract_mean_coord(tab):
-    tab_mean=[]
-    tab_labels=[]
-    j = len(tab)-1
-    coef=0
-    while j > len(tab)/2 :
-    	labels, coord = tab[j]
-    	n = len(labels)
-    	coord = coord.clone()
-    	for i in range(n):
-    	    if coef == 0:
-    	    	tab_mean.append(coord[i])
-    	    	tab_labels.append(labels[i])
-    	    if n == len(tab_mean):
-    	    	if tab_labels[i] == labels[i]:
-	    	    	for k in range(5):
-	    	    		tab_mean[i][k]= (tab_mean[i][k] * coef + coord[i][k]) / (coef + 1)
-    	j-=1
-    	coef+=1
-    return tab_mean, tab_labels
+  
+def extract(results,labels, boisson):
     
-def coord_from_best(tab_mean,tab_labels,boisson):
-
-    global detection
-    
-    if not tab_mean:
+    if len(labels)==0:
     	return None, None, None, None, 0
 
     indice=-1
     
-    for i in range(len(tab_mean)):
-    	if detection.class_to_label(tab_labels[i]) == boisson:
+    for i in range(len(results)):
+    	if detection.class_to_label(labels[i]) == boisson:
     		if indice == -1:
     			indice=i
-	    	elif tab_mean[indice][4] < tab_mean[i][4]:
+	    	elif results[indice][4] < results[i][4]:
 	    		indice=i
     
     if indice==-1:
     	return None, None, None, None, 0
     
-    return float(tab_mean[indice][0]), float(tab_mean[indice][1]), float(tab_mean[indice][2]), float(tab_mean[indice][3]), float(tab_mean[indice][4])
+    return float(results[indice][0]), float(results[indice][1]), float(results[indice][2]), float(results[indice][3]), float(results[indice][4])
+
 
 def recup_bottle(x1, y1, x2, y2, limb, h, grip):
 	traj_options = TrajectoryOptions()
@@ -373,20 +352,19 @@ def pour_glass():
     init_thread = threading.Thread(target=init_detection)
     init_thread.start()
     
-    rospy.init_node('pour_with_detection')
+    rospy.init_node('pour_visual_servoing')
 
-    rp = intera_interface.RobotParams()
     grip = intera_interface.Gripper()
     grip.open()
     
-    l = intera_interface.Limb('right')
+    limb = intera_interface.Limb('right')
     li = intera_interface.Lights()
     li.set_light_state("head_red_light",True)
     
     cam = 'right_hand_camera'
 
-    l.set_joint_position_speed(0.3)	
-    l.move_to_joint_positions(pos_detect_bottle)
+    limb.set_joint_position_speed(0.3)	
+    limb.move_to_joint_positions(pos_detect_bottle)
     
     cameras = intera_interface.Cameras()
     cameras.start_streaming(cam)
@@ -398,21 +376,69 @@ def pour_glass():
     li.set_light_state("head_green_light",True)
     
     global detection
+    global cv_image
+    global sem
     
     cameras.set_callback(cam, show_image_callback,
         rectify_image=True)
-
-    global tab
     
-    time.sleep(3)
+    coef = 1
+    
+    sem = True
+    
+    while coef > 0.01:
+    	if not sem:
+    		tab = detection(cv_image)
+    		x1, y1, x2, y2, conf = extract(tab[1],tab[0],args.drink)
+    		
+    		if x1 == None:
+    			rospy.logerr("ERREUR")
+    			exit(1)
+    		
+    		offset2D = 0.5 - ((x1 + x2) / 2)
+    		print("x1=",x1," x2=",x2," offset=",offset2D, " conf=",conf)
+    		coef = abs(offset2D)
+    		'''
+    		traj_options = TrajectoryOptions()
+    		traj_options.interpolation_type = TrajectoryOptions.CARTESIAN
+    		traj = MotionTrajectory(trajectory_options = traj_options, limb = limb)
+    		
+    		waypoint = MotionWaypoint(options = wpt_opts.to_msg(), limb = limb)
+    		poseStamped = PoseStamped()
+    		
+    		endpoint_state = limb.tip_state('right_hand')
+    		pose = endpoint_state.pose
+    		
+    		rot = PyKDL.Rotation.RPY(0, 0, 0)
+    		trans = PyKDL.Vector(offset2D, 0, 0)
+    		
+    		f = PyKDL.Frame(rot, trans)
+    		pose = posemath.toMsg(f*posemath.fromMsg(pose))
+    		poseStamped.pose = pose
+    		
+    		joint_angles = limb.joint_ordered_angles()
+    		waypoint.set_cartesian_pose(poseStamped, 'right_hand', joint_angles)
+    		traj.append_waypoint(waypoint.to_msg())
+    		result = traj.send_trajectory()
+    		if result is None:
+						      rospy.logerr('Trajectory FAILED to send')
+						      return
+
+    		if result.result:
+						      rospy.loginfo('Motion controller successfully finished the trajectory!')
+    		else:
+						      rospy.logerr('Motion controller failed to complete the trajectory with error %s',
+						                   result.errorId)
+						      return
+    		'''
+    		coef = 0
     
     cameras.stop_streaming(cam)
-    
+    '''
     l.move_to_joint_positions(pos_gen)
     
-    t_m, t_l = extract_mean_coord(tab)
     
-    x1, y1, x2, y2, conf = coord_from_best(t_m,t_l,args.drink)
+    
     
     print(str(x1) +","+ str(y1)+","+str(x2)+","+str(y2)+","+str(conf))
     
@@ -424,7 +450,8 @@ def pour_glass():
     else:
     	recup_bottle(x1, y1, x2, y2, l, heights[args.drink],grip)
     	pouring(l,grip,args.dropOff)
-
+    '''
+    exit(0)
 	
 
 if __name__ == '__main__':

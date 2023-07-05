@@ -181,6 +181,11 @@ catkin_install_python(PROGRAMS
 )
 
 catkin_install_python(PROGRAMS
+   scripts/pour_visual_servoing.py
+   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+catkin_install_python(PROGRAMS
    scripts/take_photo.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

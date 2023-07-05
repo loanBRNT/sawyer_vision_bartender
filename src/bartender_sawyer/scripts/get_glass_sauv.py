@@ -58,7 +58,7 @@ wpt_opts = MotionWaypointOptions(max_linear_speed=0.6,
                                          max_linear_accel=0.6,
                                          max_rotational_speed=1.57,
                                          max_rotational_accel=1.57,
-                                         max_joint_speed_ratio=1,
+                                         max_joint_speed_ratio=1.0,
                                          corner_distance=0.1)
                                          
 wpt_accurate_opts = MotionWaypointOptions(max_linear_speed=0.6,
@@ -179,7 +179,7 @@ def recup_glass(x1, y1, x2, y2, limb):
 	traj_options.interpolation_type = TrajectoryOptions.CARTESIAN
 	traj = MotionTrajectory(trajectory_options = traj_options, limb = limb)
     
-	pre_point = MotionWaypoint(options = wpt_accurate_opts.to_msg(), limb = limb)
+	pre_point = MotionWaypoint(options = wpt_opts.to_msg(), limb = limb)
 	get_point = MotionWaypoint(options = wpt_accurate_opts.to_msg(), limb = limb)
 	got_point = MotionWaypoint(options = wpt_accurate_opts.to_msg(), limb = limb)
 	poseStamped = PoseStamped()
@@ -190,20 +190,14 @@ def recup_glass(x1, y1, x2, y2, limb):
 	height = (y2-y1) * 640
 	pos_x = 640 * (x1+x2) / 2
 		
-	d = focale_x * height_cup / height	
-	o = (320 - pos_x ) * d / focale_x
+	d = focale_x * height_cup / height
+	deep = d * 0.006
 	
+	o = (320 - pos_x ) * d / focale_x
 	if o > 0 :
 		offset = o * 0.01875
 	else:
 		offset = o * 0.015
-		
-	if height < 245:
-		deep = d * 0.005
-	else:
-		deep = d * 0.004
-
-
 	
 	####### CONFIGURE PRE
 	rot = PyKDL.Rotation.RPY(0, 0, 0)
@@ -235,7 +229,7 @@ def recup_glass(x1, y1, x2, y2, limb):
 	
 	traj.append_waypoint(get_point.to_msg())
 	
-	####### CONFIGURE GOT
+	####### CONFIGURE GET
 	rot = PyKDL.Rotation.RPY(0, 0, 0)
 	trans = PyKDL.Vector(0, 0, 0.2)
 	
@@ -252,13 +246,13 @@ def recup_glass(x1, y1, x2, y2, limb):
 	
 	result = traj.send_trajectory()
 	if result is None:
-	
             logging.error('Trajectory FAILED to send')
-            print('1')
             return
 
-	if not result.result:
-            print('Motion controller failed to complete the trajectory with error %s',
+	if result.result:
+            logging.info('Motion controller successfully finished the trajectory!')
+	else:
+            logging.critical('Motion controller failed to complete the trajectory with error %s',
                          result.errorId)
 
 def deposit_glass(n,limb):
@@ -293,12 +287,13 @@ def deposit_glass(n,limb):
     
     result = traj.send_trajectory()
     if result is None:
-	
             logging.error('Trajectory FAILED to send')
-            print('1')
             return
-    if not result.result:
-            print('Motion controller failed to complete the trajectory with error %s',
+
+    if result.result:
+            logging.info('Motion controller successfully finished the trajectory!')
+    else:
+            logging.critical('Motion controller failed to complete the trajectory with error %s',
                          result.errorId)
     
     
