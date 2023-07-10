@@ -199,7 +199,7 @@ def recup_glass(x1, y1, x2, y2, limb):
 		offset = o * 0.015
 		
 	if height < 245:
-		deep = d * 0.005
+		deep = d * 0.0054
 	else:
 		deep = d * 0.004
 
